@@ -1,0 +1,27 @@
+.user-header{
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+}
+.header-main{
+    /* box-shadow: var(--defaultShadow); */
+    background-color: #fff;
+    
+}
+.user-header-item{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-weight: 400;
+
+}
+.link{
+    color: black;
+}
+@media(max-width:600px){
+    .user-header-item span{
+        display: none;
+    }
+}

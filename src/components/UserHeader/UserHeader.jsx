@@ -46,8 +46,8 @@ function UserHeader({fullWidth}) {
           </div>
           <div className="user-header-item">
            <Link to="/" className='link'><span>Home</span></Link> 
-           <Link to="/chat" className='link'><span>Chat</span></Link> 
-           <Link to="/profile" className='link'><span>Bookings</span></Link> 
+           <Link to="/" className='link'><span>Chat</span></Link> 
+           <Link to="/" className='link'><span>Bookings</span></Link> 
            
             <Button
               id="basic-button"

@@ -5,8 +5,6 @@
 
 .login-nav {
     padding: 20px 0px;
-    color:black ;
-
 }
 
 .login-container {
@@ -40,7 +38,7 @@
     height: 45px;
     border: none;
     outline: none;
-    background-color: black;
+    background-image: linear-gradient(to right, var(--mainColor), var(--secondColor));
     color: white;
     font-weight: 500;
     border-radius: 10px;
@@ -88,9 +86,6 @@
 .login-row.google-btn button .icon{
     font-size: 1.2rem;
 }
-.link{
-    color: black;
-}
 
 @media(max-width:775px) {
     .login-sec {
@@ -110,4 +105,7 @@
     .login-box .input div {
         height:50x;
     }
+}
+.link{
+    color: black;
 }

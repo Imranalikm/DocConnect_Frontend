@@ -1,6 +1,6 @@
-:root {
+:root { 
     --mainColor: #000000;
-    --secondColor: #404246;
+    --secondColor: rgb(95, 96, 100);
     --lightBg: #fafafa;
     --lightGrey: #e2e2e2;
     --adminBg: #f9fafb;
@@ -120,6 +120,7 @@
   
   .login-main {
     background-color: #fff;
+   
   }
   .no-result-container{
     width: 100%;

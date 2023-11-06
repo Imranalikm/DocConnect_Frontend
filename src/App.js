@@ -5,7 +5,7 @@ import axios from 'axios'
 import './App.css'
 import UserRoutes from './Routes/UserRoutes';
 import AdminRoutes from './Routes/AdminRoutes';
-
+import HospitalRoutes from './Routes/HospitalRoutes';
 import { useSelector } from 'react-redux';
 
 
@@ -19,6 +19,7 @@ function App() {
        <Routes>
       
        <Route path='/account/admin/*' element={<AdminRoutes/>}/>
+       <Route path='/account/hospital/*' element={<HospitalRoutes/>}/>
         <Route path='/*' element={<UserRoutes/>}></Route>
       </Routes>
      

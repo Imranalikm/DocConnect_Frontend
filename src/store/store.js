@@ -1,21 +1,24 @@
-import { createStore } from 'redux';
+import { createStore } from "redux";
 
 const initialState = {
   user: { login: null },
   admin: { login: null },
+  hospital: { login: null },
   loading: false,
   refresh: true,
 };
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case 'user':
+    case "user":
       return { ...state, user: action.payload };
-    case 'admin':
+    case "admin":
       return { ...state, admin: action.payload };
-    case 'refresh':
+    case "hospital":
+      return { ...state, hospital: action.payload };
+    case "refresh":
       return { ...state, refresh: !state.refresh };
-    case 'loading':
+    case "loading":
       return { ...state, loading: action.payload };
     default:
       return state;

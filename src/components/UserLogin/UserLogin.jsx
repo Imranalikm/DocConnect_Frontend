@@ -46,16 +46,16 @@ function UserLogin() {
   };
 
   return (
-    <div className="login-main">
+    <div className="login-main" >
       <Row>
         <nav className="login-nav">
           <Container>
             <Row>
-              <img
+              {/* <img
                 src={logo}
                 alt=""
                 style={{ width: "180px", height: "auto", overflow: "hidden" }}
-              />
+              /> */}
             </Row>
           </Container>
         </nav>
@@ -126,7 +126,7 @@ function UserLogin() {
                                             Demo Login
                                     </Button> */}
                   </div>
-                  <div className="login-row">OR</div>
+                  <div className="login-row"></div>
                   <div className="login-row google-btn">
                     {/* <Button variant="contained" onClick={handleGoogleLogin}>
                                             <FcGoogle className='icon' />

@@ -1,33 +1,68 @@
-import React from 'react';
-import './Sidebar.css';
-import { RiHome2Line, RiBuilding4Line, RiHospitalLine, RiUserLine } from "react-icons/ri";
+
+import React from 'react'
+import './Sidebar.css'
+import { RiBankLine, RiBarChart2Line, RiBuilding4Line, RiFileWarningLine, RiHome2Line, RiHospitalLine, RiRefundLine, RiUser2Line, RiUserLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
-const sidebarItems = [
-  { to: '/account/admin/', icon: <RiHome2Line />, text: 'Dashboard' },
-  { to: '/account/admin/hospitals', icon: <RiBuilding4Line />, text: 'Hospitals' },
-  { to: '/account/admin/hospitals/requests', icon: <RiHospitalLine />, text: 'Hospital Requests' },
-  { to: '/account/admin/users', icon: <RiUserLine />, text: 'Users' },
-];
-
-function AdminSidebar({ page, clicked }) {
+function AdminSidebar({page, clicked}) {
   return (
     <div className={`admin-sidebar ${clicked && 'open'}`}>
-      <ul>
-        {sidebarItems.map((item, index) => (
-          <Link to={item.to} key={index}>
-            <li className={`admin-sideitems ${page === item.text.toLowerCase() && 'active'}`}>
+          <ul>
+              <Link to="/account/admin/">
+            <li className={`admin-sideitems ${page=="dashboard" && 'active'}`}>
               <div className='side'></div>
               <div className="admin-sideItem">
-                {item.icon}
-                <span>{item.text}</span>
+
+                <RiHome2Line className='icon' />
+                <span>Dashboard</span>
               </div>
             </li>
-          </Link>
-        ))}
-      </ul>
-    </div>
-  );
+              </Link>
+              
+            
+            <Link to="/account/admin/">
+
+            <li className={`admin-sideitems ${page=="hospital" && 'active'}`}>
+
+              <div className='side'></div>
+              <div className="admin-sideItem">
+
+                <RiBuilding4Line className='icon' />
+                <span>Hospitals</span>
+              </div>
+            </li>
+            </Link>
+           
+            <Link to="/account/admin/">
+
+            <li className={`admin-sideitems ${page=="hospital request" && 'active'}`}>
+
+              <div className='side'></div>
+              <div className="admin-sideItem">
+
+                <RiHospitalLine className='icon' />
+                <span>Hospital Requests</span>
+              </div>
+            </li>
+            </Link>
+            <Link to="/account/admin/users">
+
+            <li className={`admin-sideitems ${page=="user" && 'active'}`}>
+
+              <div className='side'></div>
+              <div className="admin-sideItem">
+
+                <RiUserLine className='icon' />
+                <span>Users</span>
+              </div>
+            </li>
+            </Link>
+            
+
+          </ul>
+
+        </div>
+  )
 }
 
-export default AdminSidebar;
+export default AdminSidebar

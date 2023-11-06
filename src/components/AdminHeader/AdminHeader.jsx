@@ -36,7 +36,7 @@ function AdminHeader(props) {
         <img src={logo} alt="" style={{ width: '180px', height: 'auto', overflow:'hidden' }} />
           
         </div>
-        
+          <h5>Admin Panel</h5>
       </div>
       <div className="admin-header-item">
       

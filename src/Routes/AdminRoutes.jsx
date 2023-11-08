@@ -5,7 +5,9 @@ import axios from 'axios';
 import AdminHomePage from '../pages/admin/AdminHomePage';
 import AdminLoginPage from '../pages/admin/AdminLoginPage';
 import AdminUsersPage from '../pages/admin/AdminUsersPage';
+import HospitalrequestPage from '../pages/admin/AdminHospitalRequestPage';
 import ProtectedAdminRoutes from '../utils/ProtectedAdminRoutes';
+import AdminHospitalPage from '../pages/admin/AdminHospitalPage';
 export default function AdminRoutes() {
     
     const { refresh, admin} = useSelector((state) =>state);
@@ -25,6 +27,8 @@ export default function AdminRoutes() {
         <>
             <Route path='/' element={<AdminHomePage />} />
             <Route path='/users' element={<AdminUsersPage />} />
+            <Route path='/hospitals/requests' element={<HospitalrequestPage />} />
+            <Route path='/hospitals' element={<AdminHospitalPage />} />
            
         </>
         </Route>

@@ -20,7 +20,7 @@ function AdminSidebar({page, clicked}) {
               </Link>
               
             
-            <Link to="/account/admin/">
+            <Link to="/account/admin/hospitals">
 
             <li className={`admin-sideitems ${page=="hospital" && 'active'}`}>
 
@@ -33,7 +33,7 @@ function AdminSidebar({page, clicked}) {
             </li>
             </Link>
            
-            <Link to="/account/admin/">
+            <Link to="/account/admin/hospitals/requests">
 
             <li className={`admin-sideitems ${page=="hospital request" && 'active'}`}>
 

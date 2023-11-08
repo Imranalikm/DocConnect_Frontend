@@ -4,7 +4,7 @@
     --lightBg: #fafafa;
     --lightGrey: #e2e2e2;
     --adminBg: #f9fafb;
-    --adminMain: #65f23a;
+    --adminMain: #000000;
     --defaultShadow: 0px 0px 10px 10px rgba(128, 128, 128, 0.05);
     --btnBg: linear-gradient(to right, var(--mainColor), var(--secondColor));
   }

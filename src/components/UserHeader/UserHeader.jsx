@@ -19,7 +19,7 @@ function UserHeader({fullWidth}) {
     Swal.fire({
       title: 'Are you sure to logout?',
       text: "logout from this account!",
-      icon: 'warning',
+     
       showCancelButton: true,
       confirmButtonColor: '#da0303',
       cancelButtonColor: '##a8a8a8',
@@ -47,8 +47,7 @@ function UserHeader({fullWidth}) {
           <div className="user-header-item">
            <Link to="/" className='link'><span>Home</span></Link> 
            <Link to="/" className='link'><span>Chat</span></Link> 
-           <Link to="/" className='link'><span>Bookings</span></Link> 
-           
+           <Link to="/" className='link'><span>About</span></Link> 
             <Button
               id="basic-button"
               aria-controls={open ? 'basic-menu' : undefined}
@@ -57,6 +56,7 @@ function UserHeader({fullWidth}) {
               onClick={(e) => { setOpen(true); setAnchorEl(e.currentTarget); }}
             >
               <Avatar alt="djhsk sjdhkjs" src={(user && user.picture) ? user.picture.replace('=s96-c', '') : "https://png.pngtree.com/png-vector/20220709/ourmid/pngtree-businessman-user-avatar-wearing-suit-with-red-tie-png-image_5809521.png"} sx={{ width: 32, height: 32 }} />
+              
             </Button>
             <Menu
               id="basic-menu"
@@ -67,10 +67,11 @@ function UserHeader({fullWidth}) {
                 'aria-labelledby': 'basic-button',
               }}
             >
-              <MenuItem onClick={() => navigate("/profile")} >Profile</MenuItem>
+              <MenuItem onClick={() => navigate("/profile")} >{user.name}'s Profile</MenuItem>
               
               <MenuItem onClick={handleLogout} >Logout</MenuItem>
             </Menu>
+            
           </div>
 
         </div>

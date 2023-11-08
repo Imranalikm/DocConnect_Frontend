@@ -58,19 +58,20 @@ export default function AdminUsers() {
       <div className="admin-main">
         <AdminSidebar page={'user'} clicked={clicked} />
         <Container fluid>
-          <div className="admin-container">
-            <div className="container-header">
-              <h5>Users</h5>
-              <div className="admin-search-box">
-                <input
-                  type="text"
-                  placeholder='Search...'
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <button><RiSearch2Line /></button>
-              </div>
+        <div className="admin-container">
+          <div className="container-header">
+            <h5>Users</h5>
+            <div className="admin-search-box">
+              <input
+                type="text"
+                placeholder='Search...'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <button><RiSearch2Line /></button>
             </div>
+          </div>
+          {usersList.length > 0 ? ( // Check if usersList is not empty
             <Table className='table-main' striped bordered hover responsive>
               <thead>
                 <tr>
@@ -87,9 +88,9 @@ export default function AdminUsers() {
                     <td>{index + 1}</td>
                     <td>{item.name}</td>
                     <td>{item.email}</td>
-                    <td>{item.block ?<span style={{ color: 'red',fontWeight:"bold" }}>Blocked</span> : <span style={{ color: 'green' ,fontWeight:"bold"}}>Active</span>}</td>
+                    <td>{item.block ? <span style={{ color: 'red', fontWeight: "bold" }}>Blocked</span> : <span style={{ color: 'green', fontWeight: "bold" }}>Active</span>}</td>
                     <td className='option-btn'>
-                      <button onClick={() => toggleBlockStatus(item._id, item.block)}  style={{ backgroundColor: item.block ? 'green' : 'red' ,padding:'4px 8px',borderRadius:'.25rem',color:'white'}}>
+                      <button onClick={() => toggleBlockStatus(item._id, item.block)} style={{ backgroundColor: item.block ? 'green' : 'red', padding: '4px 8px', borderRadius: '.25rem', color: 'white' }}>
                         {item.block ? "Unblock" : "Block"}
                       </button>
                     </td>
@@ -97,8 +98,13 @@ export default function AdminUsers() {
                 ))}
               </tbody>
             </Table>
-          </div>
-        </Container>
+          ) : (
+            <p style={{ fontSize: '18px', color: '#888', textAlign: 'center', marginTop: '20px' }}>
+    No users found
+  </p>
+          )}
+        </div>
+      </Container>
       </div>
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}

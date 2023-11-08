@@ -109,3 +109,40 @@
 .link{
     color: black;
 }
+
+/* Enabled Resend OTP Button */
+.resend-button {
+    display: flex;
+    justify-items: center;
+}
+.resend-button button {
+    background-color: #007bff; /* Change to your desired background color */
+    color: #fff; /* Change to your desired text color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-items: center;
+
+  }
+  
+  .resend-button button:hover {
+    background-color: #007bff; /* Change to your desired hover color */
+  }
+  
+  /* Disabled Resend OTP Button */
+  .resend-button button:disabled {
+    background-color: #d9d9d9; /* Change to your desired disabled background color */
+    color: #a0a0a0; /* Change to your desired disabled text color */
+    cursor: not-allowed;
+  }
+
+  .countdown p {
+    margin-top: 10px;
+    color: rgb(255, 0, 0); /* Change to your desired text color */
+    font-size: 15px; /* Adjust font size as needed */
+    font-weight: bold;
+  }
+  
+ 

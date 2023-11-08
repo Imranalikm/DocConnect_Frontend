@@ -41,6 +41,7 @@ function UserSignup() {
       if (!loading.submit) {
         setLoading({ ...loading, submit: true });
         let { data } = await axios.post("/user/auth/register", { email });
+        console.log(data);
         if (data.err) {
           setErrMessage(data.message);
         } else {

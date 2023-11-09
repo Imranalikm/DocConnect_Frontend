@@ -85,7 +85,7 @@ export default function AdminHospitals() {
             {hospitalList.length === 0 ? (
               <p style={{ fontSize: '18px', color: '#888', textAlign: 'center', marginTop: '20px' }}>No Hospitals Found</p>
             ) : (
-              <Table className="table-main" responsive>
+              <Table className="table-main" striped bordered hover responsive>
                 <thead>
                   <tr>
                     <th>#</th>

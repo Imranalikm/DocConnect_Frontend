@@ -12,6 +12,15 @@ import { useSelector } from 'react-redux';
 function App() {
   axios.defaults.baseURL ='http://localhost:3000';
   axios.defaults.withCredentials = true;
+
+  axios.interceptors.request.use((request) => {
+  
+    console.log(request)
+    return request;
+
+  });
+
+
   
   const { loading } = useSelector((state) => state);
   return (

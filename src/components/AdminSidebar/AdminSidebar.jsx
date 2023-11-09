@@ -10,7 +10,7 @@ function AdminSidebar({page, clicked}) {
           <ul>
               <Link to="/account/admin/">
             <li className={`admin-sideitems ${page=="dashboard" && 'active'}`}>
-              <div className='side'></div>
+              
               <div className="admin-sideItem">
 
                 <RiHome2Line className='icon' />
@@ -24,7 +24,7 @@ function AdminSidebar({page, clicked}) {
 
             <li className={`admin-sideitems ${page=="hospital" && 'active'}`}>
 
-              <div className='side'></div>
+              
               <div className="admin-sideItem">
 
                 <RiBuilding4Line className='icon' />
@@ -37,7 +37,7 @@ function AdminSidebar({page, clicked}) {
 
             <li className={`admin-sideitems ${page=="hospital request" && 'active'}`}>
 
-              <div className='side'></div>
+              
               <div className="admin-sideItem">
 
                 <RiHospitalLine className='icon' />
@@ -49,7 +49,7 @@ function AdminSidebar({page, clicked}) {
 
             <li className={`admin-sideitems ${page=="user" && 'active'}`}>
 
-              <div className='side'></div>
+              
               <div className="admin-sideItem">
 
                 <RiUserLine className='icon' />

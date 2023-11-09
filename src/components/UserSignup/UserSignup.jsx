@@ -10,7 +10,7 @@ import axios from "axios";
 import VerifyOtp from "../verifyOtp/VerifyOtp";
 import validatePassword from "../../helpers/validatePassword";
 import Lottie from "lottie-react"; // Import the Lottie component
-import animationData from "../../assets/images/Animation - 1699087723988.json"; 
+import animationData from "../../assets/images/Animation - 1699530692354.json"; 
 
 function UserSignup() {
   const [name, setName] = useState("");

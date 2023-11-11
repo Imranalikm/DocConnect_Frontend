@@ -46,7 +46,7 @@ function UserLogin() {
   };
 
   return (
-    <div className="login-main" >
+    <div className="login-main">
       <Row>
         <nav className="login-nav">
           <Container>
@@ -138,35 +138,7 @@ function UserLogin() {
                       Don't Have an Account? Signin
                     </Link>
                   </div>
-                  {/* <div className="login-row mt-3">
-                    <ToggleButtonGroup
-                      value={loginType}
-                      exclusive
-                      onChange={handleLoginTypeChange}
-                      aria-label="login-type"
-                    >
-                      <ToggleButton value="doctor" aria-label="doctor">
-                        Doctor
-                      </ToggleButton>
-                      <ToggleButton value="hospital" aria-label="hospital">
-                        Hospital
-                      </ToggleButton>
-                    </ToggleButtonGroup>
-                  </div> */}
-                  {/* <div className="login-row mt-3">
-                    <Link
-                      to={
-                        loginType === "doctor"
-                          ? "/account/doctor"
-                          : "/account/hospital"
-                      }
-                    >
-                      Login as{" "}
-                      <b>
-                        {loginType.charAt(0).toUpperCase() + loginType.slice(1)}
-                      </b>
-                    </Link>
-                  </div> */}
+                 
                 </form>
               </div>
             </Col>

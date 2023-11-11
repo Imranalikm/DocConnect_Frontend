@@ -6,7 +6,7 @@ import HospitalHomePage from '../pages/hospital/HospitalHomePage';
 import HospitalLoginPage from '../pages/hospital/HospitalLoginPage';
 import HospitalSignupPage from '../pages/hospital/HospitalSignupPage';
 import ProtectedHospitalRoutes from '../utils/ProtectedHospitalRoutes';
-
+import HospitalDoctorPage from '../pages/hospital/HospitalDoctorPage';
 export default function HospitalRoutes() {
     const { refresh, hospital } = useSelector((state) => state);
       const dispatch = useDispatch()
@@ -27,7 +27,7 @@ export default function HospitalRoutes() {
         <Route element={<ProtectedHospitalRoutes hospital={hospital} />}>
         <>
             <Route path='/' element={<HospitalHomePage />} />
-           
+            <Route path='/doctor' element={<HospitalDoctorPage />} />
           </>
         </Route>
         {

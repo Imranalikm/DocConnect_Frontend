@@ -57,6 +57,8 @@
     color: var(--mainColor);
 }
 
+
+
 .login-box .input div {
     border-radius: 10px;
     background-color: var(--lightBg);

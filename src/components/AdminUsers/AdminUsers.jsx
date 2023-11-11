@@ -75,7 +75,7 @@ export default function AdminUsers() {
             <Table className='table-main' striped bordered hover responsive>
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th>SI.no</th>
                   <th>Name</th>
                   <th>Email</th>
                   <th>Status</th>

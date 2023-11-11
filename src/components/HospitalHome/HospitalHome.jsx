@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux'; // Assuming you're using Redux
 import { Col, Container, Row } from 'react-bootstrap';
 import HospitalHeader from '../HospitalHeader/HospitalHeader'
-
+import HospitalSidebar from '../HospitalSidebar/HospitalSidebar';
 
 
 function HospitalHome() {
@@ -18,7 +18,7 @@ function HospitalHome() {
     <div className="admin-home">
       <HospitalHeader handleClick={handleClick} />
       <div className="admin-main">
-        {/* <HospitalSidebar page={'dashboard'} clicked={clicked} /> */}
+        <HospitalSidebar page={'dashboard'} clicked={clicked} />
         <div className="admin-container">
           {/* Place your content here */}
         </div>

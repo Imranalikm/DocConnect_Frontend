@@ -3,7 +3,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { ClipLoader } from 'react-spinners'
-// import '../../assets/css/modalForm.css'
+import '../../../assets/css/modalForm.css'
 
 function EditDoctor({ setShowModal, setRefresh, refresh, id }) {
     const [name, setName] = useState("")
@@ -23,6 +23,7 @@ function EditDoctor({ setShowModal, setRefresh, refresh, id }) {
         (
             async function () {
                 const { data: doctorData } = await axios.get("/user/doctor/" + id);
+                console.log(doctorData);
                 if (!doctorData.err) {
                     setName(doctorData.doctor.name)
                     setEmail(doctorData.doctor.email)
@@ -40,7 +41,7 @@ function EditDoctor({ setShowModal, setRefresh, refresh, id }) {
                     setDepartmentList(data.departments)
                 }
             }
-        )()
+        )();
     }, [])
 
     async function handleSubmit(e) {
@@ -93,19 +94,7 @@ function EditDoctor({ setShowModal, setRefresh, refresh, id }) {
                     <TextField id="outlined-basic" value={fees} onChange={(e) => setFees(e.target.value)} label="Fees" type="number" variant="outlined" fullWidth className='input' />
                 </div>
                 <div className="modal-form-row">
-                    {/* <FormControl >
-                        <InputLabel id="demo-simple-select-label">Department</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={department}
-                            label="Department"
-                        >
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
-                        </Select>
-                    </FormControl> */}
+                  
                     <Form.Select aria-label="Default select example" value={department} onChange={(e) => setDepartment(e.target.value)}>
                         <option value="">Select Department</option>
                         {

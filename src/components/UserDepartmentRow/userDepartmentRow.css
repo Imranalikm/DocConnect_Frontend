@@ -1,0 +1,40 @@
+.department-row-main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.department-row-container{
+    width: 100%;
+}
+
+.department-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.department-item-box{
+    min-height: 170px;
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    box-shadow: var(--defaultShadow);
+    background-color: #fff;
+    overflow:hidden;
+}
+.department-item-box img{
+    width: 60%;
+}
+
+@media(max-width:600px){
+    .department-item-box{
+        max-width: 180px;
+    }
+}

@@ -7,6 +7,10 @@ import HospitalLoginPage from '../pages/hospital/HospitalLoginPage';
 import HospitalSignupPage from '../pages/hospital/HospitalSignupPage';
 import ProtectedHospitalRoutes from '../utils/ProtectedHospitalRoutes';
 import HospitalDoctorPage from '../pages/hospital/HospitalDoctorPage';
+import HospitalDepartmentPage from '../pages/hospital/HospitalDepartmentPage';
+import HospitalSchedulePage from '../pages/hospital/HospitalSchedulePage';
+import HospitalProfilePage from '../pages/hospital/HospitalProfilePage';
+
 export default function HospitalRoutes() {
     const { refresh, hospital } = useSelector((state) => state);
       const dispatch = useDispatch()
@@ -28,6 +32,9 @@ export default function HospitalRoutes() {
         <>
             <Route path='/' element={<HospitalHomePage />} />
             <Route path='/doctor' element={<HospitalDoctorPage />} />
+            <Route path='/department' element={<HospitalDepartmentPage />} />
+            <Route path='/schedule/:id' element={<HospitalSchedulePage />} />
+            <Route path='/profile' element={<HospitalProfilePage />} />
           </>
         </Route>
         {

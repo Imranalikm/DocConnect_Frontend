@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Form, FormControl } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { ClipLoader } from 'react-spinners'
-// import '../../assets/css/modalForm.css'
+import '../../../assets/css/modalForm.css'
 
 function AddDoctor({ setShowModal, setRefresh, refresh }) {
     const [name, setName] = useState("")

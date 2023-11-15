@@ -3,6 +3,8 @@ import * as React from 'react';
 import { useState } from 'react';
 import { Container, Dropdown, Table } from 'react-bootstrap';
 import { RiMore2Fill, RiSearch2Line } from 'react-icons/ri';
+ import {BiSolidEdit} from 'react-icons/bi'
+ import {GrSchedulePlay} from 'react-icons/gr'
 import Swal from 'sweetalert2'
 import { Backdrop, CircularProgress, setRef } from '@mui/material';
 import HospitalSidebar from '../HospitalSidebar/HospitalSidebar';
@@ -28,11 +30,10 @@ export default function HospitalDoctor() {
         setCLicked(!clicked)
     }
     const dispatch = useDispatch()
-    
+
     const addDoctor = async () => {
         setShowModal(true)
     }
-   
     const blockDoctor = (id) => {
         Swal.fire({
             title: 'Are you sure? Block',
@@ -91,7 +92,7 @@ export default function HospitalDoctor() {
                                 <input type="text" placeholder='Search...' value={name} onChange={(e)=>setName(e.target.value)} />
                                 <button><RiSearch2Line/></button>
                             </div>
-                            <button className='btn btn-dark' onClick={addDoctor} >Add Doctor</button>
+                            <button className='btn btn-dark' onClick={addDoctor}>Add Doctor</button>
                         </div>
                         <Table className='table-main' striped bordered hover responsive>
                             <thead>
@@ -102,7 +103,9 @@ export default function HospitalDoctor() {
                                     <th>Qualification</th>
                                     <th>Fees</th>
                                     <th>Status</th>
-                                    <th>option</th>
+                                    <th>Edit</th>
+                                    <th>Schedule</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -119,25 +122,24 @@ export default function HospitalDoctor() {
                                             <td>{item.email}</td>
                                             <td>{item.qualification}</td>
                                             <td>{item.fees}</td>
-                                            <td>{item.block ? "Blocked" : "Active"}</td>
-                                            <td className='option-btn'>
-                                                <Dropdown>
-                                                    <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                                                        <RiMore2Fill />
-                                                    </Dropdown.Toggle>
-
-                                                    <Dropdown.Menu>
-                                                        <Dropdown.Item href="#" onClick={(e) => { setShowEditModal(true); setEditDoctorId(item._id) }}>Edit</Dropdown.Item>
-                                                        <Dropdown.Item href="#" onClick={() => { navigate('/account/hospital/schedule/'+item._id) }}>Schedule</Dropdown.Item>
-                                                        {
-                                                            item.block ?
-                                                            <Dropdown.Item href="#" onClick={() => { unBlockDoctor(item._id) }}>unBlock Doctor</Dropdown.Item>
-                                                            :
-                                                            <Dropdown.Item href="#" onClick={() => { blockDoctor(item._id) }}>Block Doctor</Dropdown.Item>
-                                                        }
-                                                    </Dropdown.Menu>
-                                                </Dropdown>
-                                            </td>
+                                            <td>{item.block ? <span style={{ color: 'red', fontWeight: "bold" }}>Blocked</span> : <span style={{ color: 'green', fontWeight: "bold" }}>Active</span>}</td>
+                                            <td><div className="button-column">
+                    <button onClick={() => { setShowEditModal(true); setEditDoctorId(item._id) }}>
+                        <BiSolidEdit size={30} color="red" />
+                    </button>
+                </div></td>
+                <td><div className="button-column">
+                    <button onClick={() => { navigate('/account/hospital/schedule/'+item._id) }}><GrSchedulePlay size={30} color="blue" /></button>
+                </div></td>
+                <td><div className="button-column">
+                    {
+                        item.block ?
+                        <button onClick={() => { unBlockDoctor(item._id) }} style={{ backgroundColor: 'green', padding: '4px 8px', borderRadius: '.25rem', color: 'white' }}>Unblock</button>
+                        :
+                        <button onClick={() => { blockDoctor(item._id) }} style={{ backgroundColor: 'red', padding: '4px 8px', borderRadius: '.25rem', color: 'white' }}>Block</button>
+                    }
+                </div></td>
+                                          
                                         </tr>
                                     })
                                     :

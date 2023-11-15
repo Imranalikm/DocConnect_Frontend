@@ -1,0 +1,102 @@
+.dr-profile-sec{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.dr-profile-img img{
+    width: 100% ;
+    height: 350px;
+    object-fit: cover;
+    border-radius:2rem ;
+}
+
+.dr-profile-img{
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+
+    border-radius:2rem ;
+}
+.dr-profile-img :hover{
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+
+    border-radius:2rem ;
+}
+.dr-profile-sec.sec-2{
+    gap: 20px;
+}
+.dr-profile-sec-row.head p{
+    color: var(--mainColor);
+    font-weight: 550;
+}
+.dr-profile-sec-row{
+    display: flex;
+    flex-direction: column;
+}
+.dr-profile-sec-row p{
+    font-size: .9rem;
+    max-width: 700px;
+}
+.dr-profile-sec-row h6{
+    color: grey;
+}
+.dr-profile-sec-row .dr-profile-rating{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.dr-profile-reviews{
+    display: flex;
+    flex-direction: column;
+    
+}
+.dr-profile-review{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.dr-profile-review p{
+    font-size: .8rem;
+    padding-left: 40px;
+}
+.dr-profile-review .head-sec{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+}
+.dr-profile-sec-row.button{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.dr-profile-sec-row.button button{
+    width: 100%;
+    height: 45px;
+    border-radius: 10px;
+    background: var(--btnBg);
+    border: none;
+    outline: none;
+    color: white;
+    font-size: .9rem;
+    font-weight: 600;
+}
+.dr-profile-sec-row.button button:first-child{
+    background: none;
+    background-color: white;
+    border: 1px solid var(--mainColor);
+    color: var(--mainColor);
+}
+
+.doctor-time-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.doctor-time-list .time-box{
+    border: 1px solid var(--mainColor);
+    box-shadow: var(--defaultShadow);
+    padding: 8px;
+    border-radius: 10px;
+    color: var(--mainColor);
+}
+

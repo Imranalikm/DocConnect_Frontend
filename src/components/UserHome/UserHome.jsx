@@ -1,11 +1,25 @@
-  import React from 'react'
+  import React,{useState,useEffect} from 'react'
+  import axios from 'axios'
   import UserHeader from '../UserHeader/UserHeader'
+  import UserDepartmentRow from '../UserDepartmentRow/UserDepartmentRow'
   import { Col, Container, Row } from 'react-bootstrap'
   import { Link } from 'react-router-dom'
   import "./UserHome.css"
   import banner from "./../../assets/images/banner.jpg"
 
   const UserHome = () => {
+    const [departmentList, setDepartmentList] = useState([])
+
+    useEffect(() => {
+      (
+        async function () {
+          const { data } = await axios.get("/user/departments")
+          if (data.departments) {
+            setDepartmentList(data.departments)
+          }
+        }
+      )()
+    }, [])
     return (
       <>
       
@@ -22,13 +36,16 @@
           <div className="div-2">Your Health, Your Choice, Our App.</div>
           
           <div className="div-4">
-            <Link to='/' className='link'>Take Appointment</Link>
+            <Link to='/search' className='link'>Take Appointment</Link>
             </div>
         </div>
               
               </Container>
           
           </Row>
+          <Row>
+          <UserDepartmentRow hospitalWise={false} list={departmentList} />
+        </Row>
       
     
 

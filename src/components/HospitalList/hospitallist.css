@@ -1,0 +1,35 @@
+.hs-container{
+    width: 100%;
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    align-items: center;
+    padding: 3px 7px;
+    box-shadow: var(--defaultShadow);
+    
+}
+.hs-container-profile{
+    min-width: 150px;
+    max-width: 150px;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+}
+.hs-container-profile-desc{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    max-height: 150px;
+    overflow: hidden;
+}
+.hs-container-profile-desc .desc{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    font-size: .95rem;
+    color: rgb(63, 63, 63);
+}

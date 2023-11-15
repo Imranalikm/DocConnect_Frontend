@@ -1,0 +1,89 @@
+.modal-form{
+    margin-top: 5px;
+    position: fixed;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.404);
+    z-index: 1000;
+    overflow-y: auto;
+
+    
+
+}
+.modal-container{
+    width: 500px;
+    max-width: 99%;
+    padding: 20px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px grey;
+    animation: startAnime .3s;
+    overflow-y: auto;
+    z-index: 1000;
+
+}
+.modal-container.complaint{
+    width: 700px;
+
+}
+.modal-form-row{
+    display: flex;
+    gap: 10px;
+}
+.modal-form-row.head{
+    display: flex;
+    justify-content: center;
+}
+.modal-form-row.image img{
+    height: 350px;
+    width: 350px;
+    object-fit: cover;
+}
+.modal-form-row.image{
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-form-row.image.full img{
+    width: 100%;
+}
+.modal-form-row.image.register img{
+    width: 100%;
+    height: 200px;
+    object-fit: contain
+}
+
+@keyframes startAnime {
+    from{
+        opacity: 0%;
+        transform: scale(0.8);
+    }
+    to{
+        opacity: 100%;
+        transform: scale(1);
+    }
+}
+
+/* @media(max-width:600px){
+    .modal-container{
+        height: 100%;
+        justify-content: center;
+    }
+} */
+/* Add the following style to limit the height of the modal */
+.modal-container.with-max-height {
+    max-height: 80vh; /* Adjust the percentage as needed */
+}
+
+/* Add the following style to enable horizontal scrolling if needed */
+.modal-container.with-horizontal-scroll {
+    overflow-x: auto;
+}

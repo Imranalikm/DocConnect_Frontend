@@ -14,8 +14,6 @@ function App() {
   axios.defaults.withCredentials = true;
 
   axios.interceptors.request.use((request) => {
-  
-    console.log(request)
     return request;
 
   });

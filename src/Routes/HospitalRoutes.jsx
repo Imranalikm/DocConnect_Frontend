@@ -10,6 +10,7 @@ import HospitalDoctorPage from '../pages/hospital/HospitalDoctorPage';
 import HospitalDepartmentPage from '../pages/hospital/HospitalDepartmentPage';
 import HospitalSchedulePage from '../pages/hospital/HospitalSchedulePage';
 import HospitalProfilePage from '../pages/hospital/HospitalProfilePage';
+import HospitalApprovalPage from '../pages/hospital/HospitalApprovalPage';
 
 export default function HospitalRoutes() {
     const { refresh, hospital } = useSelector((state) => state);
@@ -25,7 +26,21 @@ export default function HospitalRoutes() {
   return (
     <Routes>
        
+       {
+          hospital.login && hospital.details.rejected &&
+          <>
+            <Route path='/' element={<HospitalApprovalPage rejected hospital={hospital.details} rejectedMessage={hospital.details.rejectedMessage} />} />
+            <Route path='/*' element={<HospitalApprovalPage rejected hospital={hospital.details} rejectedMessage={hospital.details.rejectedMessage} />} />
+          </>
+        }
         
+        {
+          hospital.login && hospital.details.active === false &&
+          <>
+            <Route path='/' element={<HospitalApprovalPage rejected={false} />} />
+            <Route path='/*' element={<HospitalApprovalPage rejected={false} />} />
+          </>
+        }
         
 
         <Route element={<ProtectedHospitalRoutes hospital={hospital} />}>

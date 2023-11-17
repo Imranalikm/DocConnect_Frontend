@@ -1,0 +1,100 @@
+.book-now-main {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background overlay */
+}
+
+.booking-container {
+    background-color: #fff;
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.headr {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.booking-row {
+    margin-bottom: 15px;
+}
+
+.booking-row-days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.booking-row-day {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.booking-row-day label {
+    width: 100%;
+    text-align: center;
+}
+
+.booking-row-day input {
+    display: none;
+}
+
+.booking-row-day input:checked + label {
+    background-color: rgb(9, 53, 0);
+    color: #ffffff;
+    border-radius: .5rem;
+    padding: 8px;
+}
+
+.booking-row-head {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    border-color: #0011ff;
+}
+
+.bttn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bttn button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.bttn button:first-child {
+    margin-right: 10px;
+}
+
+.bttn button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}

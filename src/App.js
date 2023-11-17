@@ -10,16 +10,40 @@ import { useSelector } from 'react-redux';
 
 
 function App() {
+
   axios.defaults.baseURL ='http://localhost:3000';
   axios.defaults.withCredentials = true;
 
-  axios.interceptors.request.use((request) => {
-    return request;
-
-  });
-
+  axios.interceptors.request.use(
+    (config) => {
+      
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+  
+  
+  axios.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      const { status } = error.response;
+  
+      if (status === 401) {
+        window.location.href = '/login'; 
+      } else {
+        console.error('Request failed with error:', error);
+      }
+  
+      return Promise.reject(error);
+    }
+  );
 
   
+
   const { loading } = useSelector((state) => state);
   return (
     <div className="App">

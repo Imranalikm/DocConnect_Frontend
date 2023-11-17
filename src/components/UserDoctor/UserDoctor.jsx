@@ -5,9 +5,11 @@ import { Avatar, Rating, setRef, TextField } from "@mui/material"
 import '../DoctorProfile/doctorProfile.css'
 import { useNavigate, useParams } from "react-router-dom"
 import axios from "axios"
-
 import {  getDoctor } from "../../api/userApi"
-import Swal from "sweetalert2" 
+import Swal from "sweetalert2"  
+import BookNow from "../Modals/BookNow/BookNow"
+import animationData from '../../assets/images/greencircle.json'
+import Lottie from "lottie-react"; // Import the Lottie component
 
 function UserDoctor() {
     const { id } = useParams()
@@ -106,7 +108,14 @@ function UserDoctor() {
                                     <b>{doctor.qualification}</b>
                                 </div>
                                 <div className="dr-profile-sec-row">
-                                    <h6>Appointments Available</h6>
+                                    <div className="d-flex"><h6>Appointments Available </h6>
+                                    <Lottie
+  animationData={animationData}
+  loop
+  
+  style={{ width: '20px', height: '20px' }} // Set the desired dimensions
+/></div>
+                                    
                                     {
                                         daysAvailable[0] ?
                                         <div className="doctor-time-list">
@@ -153,10 +162,12 @@ function UserDoctor() {
 
                         </Col>
                         
-                        {/* {
+                        {
                             showBookNow &&
+                            
                             <BookNow daysAvailable={daysAvailable} doctor={doctor} setShowBookNow={setShowBookNow} refresh={refresh} setRefresh={setRefresh} />
-                        } */}
+                            
+                        }
 
                     </Row>
                    

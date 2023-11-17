@@ -97,6 +97,8 @@
     box-shadow: var(--defaultShadow);
     padding: 8px;
     border-radius: 10px;
-    color: var(--mainColor);
+    color:white;
+    background-color: black;
 }
+
 

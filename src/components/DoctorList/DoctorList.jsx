@@ -28,9 +28,10 @@ function DoctorList({ list, title }) {
                                         <h5>{item.name}</h5>
                                         
                                         <div className="desc">
-                                            <b>₹{item.fees}</b>
+                                            
                                             <span>{item.department.name}</span>
                                             <span>{item.hospitalId.name}</span>
+                                            <b>₹{item.fees}</b>
                                         </div>
                                     </div>
                                 </div>

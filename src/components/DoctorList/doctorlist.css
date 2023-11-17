@@ -7,8 +7,14 @@
     align-items: center;
     padding: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease-in-out;
+    transition: transform 0.3s ease;
   }
+
+  .dr-container:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
+
   
   .dr-container:hover {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
@@ -48,7 +54,10 @@
   
   .dr-container-profile-desc .desc b {
     font-weight: 600;
-    color: #333333;
+    color: #ffffff;
+    background-color:violet;
+    padding: 3px;
+    border-radius: .5rem;
   }
   
   .dr-container-profile-desc .desc span {

@@ -1,5 +1,5 @@
 import { InputLabel, MenuItem, Select, TextField } from '@mui/material'
-import axios from 'axios'
+import axiosInstance from '../../../axios/axiosInstance'
 import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { ClipLoader } from 'react-spinners'
@@ -22,7 +22,7 @@ function EditDoctor({ setShowModal, setRefresh, refresh, id }) {
     useEffect(() => {
         (
             async function () {
-                const { data: doctorData } = await axios.get("/user/doctor/" + id);
+                const { data: doctorData } = await axiosInstance.get("/user/doctor/" + id);
                 console.log(doctorData);
                 if (!doctorData.err) {
                     setName(doctorData.doctor.name)
@@ -36,7 +36,7 @@ function EditDoctor({ setShowModal, setRefresh, refresh, id }) {
                     setFees(doctorData.doctor.fees)
                 }
 
-                const { data } = await axios.get("/hospital/departments")
+                const { data } = await axiosInstance.get("/hospital/departments")
                 if (!data.err) {
                     setDepartmentList(data.departments)
                 }
@@ -48,7 +48,7 @@ function EditDoctor({ setShowModal, setRefresh, refresh, id }) {
         e.preventDefault();
         setLoading({ ...loading, submit: true })
         if (validForm()) {
-            const { data } = await axios.patch("/hospital/doctor", {
+            const { data } = await axiosInstance.patch("/hospital/doctor", {
                 email, name, department, qualification, specialization, fees, about, _id: id
             })
             if (data.err) {

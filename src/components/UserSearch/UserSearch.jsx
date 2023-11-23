@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axiosInstance from '../../axios/axiosInstance'
 import React, { useEffect, useState } from 'react'
 import { Container, Row } from 'react-bootstrap'
 import {  RiSearch2Line } from 'react-icons/ri'
@@ -20,14 +20,14 @@ function UserSearch() {
     async function handleSearch() {
 
         if (searchType === 'hospital') {
-            let { data } = await axios.get("/user/hospitals?name=" + name + "&department=" + department);
+            let { data } = await axiosInstance.get("/user/hospitals?name=" + name + "&department=" + department);
             
             if (!data.err) {
                 
                 setHospitalList(data.hospitals)
             }
         } else {
-            let { data } = await axios.get("/user/doctors?name=" + name + "&department=" + department + "&sort=" + sort);
+            let { data } = await axiosInstance.get("/user/doctors?name=" + name + "&department=" + department + "&sort=" + sort);
             console.log(data);
             if (!data.err) {
                
@@ -43,7 +43,7 @@ function UserSearch() {
 
         (
             async function () {
-                let { data: departmentData } = await axios.get("/user/departments")
+                let { data: departmentData } = await axiosInstance.get("/user/departments")
                 if (!departmentData.err) {
                     setDepartmentList(departmentData.departments)
                 }

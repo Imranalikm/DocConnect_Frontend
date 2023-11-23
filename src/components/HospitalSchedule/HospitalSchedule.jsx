@@ -12,7 +12,7 @@ import { scheduleReducer } from '../../reducers/scheduleReducer';
 import { TextField } from '@mui/material';
 import { RiDeleteBin4Line, RiDeleteBin5Line } from 'react-icons/ri';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../../axios/axiosInstance'
 import Swal from 'sweetalert2';
 
 export default function HospitalSchedule() {
@@ -33,7 +33,7 @@ export default function HospitalSchedule() {
   }
   useEffect(() => {
     (async function () {
-      const { data } = await axios.get("/hospital/doctor/schedule/" + doctorId);
+      const { data } = await axiosInstance.get("/hospital/doctor/schedule/" + doctorId);
       if(!data.err){
         scheduleDispatch({type:'all', payload:data.schedule})
       }
@@ -70,7 +70,7 @@ export default function HospitalSchedule() {
     scheduleDispatch({ type, payload: index })
   }
   const handleSubmit = async() => {
-    const {data} = await axios.patch("/hospital/doctor/schedule",{
+    const {data} = await axiosInstance.patch("/hospital/doctor/schedule",{
       doctorId,
       ...scheduleState
     })

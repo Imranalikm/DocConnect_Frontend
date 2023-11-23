@@ -6,7 +6,17 @@ import { Link } from 'react-router-dom'
 import noResultImg from '../../assets/images/no-result.jpg'
 import './doctorlist.css'
 
+
+
 function DoctorList({ list, title }) {
+
+    const departmentColors = {
+        'Cardiology': 'lightblue',
+        'Nephrology': 'lightgreen',
+        'General Medicine':'#fb6f92',
+        'Dental Medicine':'#fcbf49',
+        'Orthology':'#deaaff'
+      }
     return (
         <div>
             <Row className='d-flex justify-content-center'>
@@ -31,7 +41,7 @@ function DoctorList({ list, title }) {
                                             
                                             <span>{item.department.name}</span>
                                             <span>{item.hospitalId.name}</span>
-                                            <b>₹{item.fees}</b>
+                                            <b style={{ backgroundColor: departmentColors[item.department.name] }} >₹{item.fees}</b>
                                         </div>
                                     </div>
                                 </div>

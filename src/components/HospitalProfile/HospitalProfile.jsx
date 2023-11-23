@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Avatar, Rating } from "@mui/material"
 import '../DoctorProfile/doctorProfile.css'
 import UserDepartmentRow from "../UserDepartmentRow/UserDepartmentRow"
-import axios from "axios"
+import axiosInstance from '../../axios/axiosInstance'
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import HospitalHeader from "../HospitalHeader/HospitalHeader"
@@ -44,7 +44,7 @@ export default function HospitalProfile() {
                         <Row>
                             <Col sm={12} md={5}>
                                 <div className="dr-profile-sec sec-1">
-                                    <div className="dr-profile-img">
+                                    <div className="hospital-profile-img">
                                         <img src={hospital.image.url} alt="" />
                                     </div>
 

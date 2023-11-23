@@ -1,13 +1,15 @@
 .dr-container {
     width: 100%;
     display: flex;
-    background-color: #ffffff;
+    background-color: white;
     border-radius: 10px;
     overflow: hidden;
     align-items: center;
     padding: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    position: relative;
+    
   }
 
   .dr-container:hover {
@@ -55,9 +57,12 @@
   .dr-container-profile-desc .desc b {
     font-weight: 600;
     color: #ffffff;
-    background-color:violet;
-    padding: 3px;
+    background-color:red;
+    padding: 2px 60px;
     border-radius: .5rem;
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
   }
   
   .dr-container-profile-desc .desc span {

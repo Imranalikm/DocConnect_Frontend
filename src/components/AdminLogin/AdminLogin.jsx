@@ -4,7 +4,7 @@ import { TextField } from "@mui/material";
 import loginImage from "../../assets/images/logo.PNG";
 import "../UserLogin/userlogin.css";
 import { ClipLoader } from "react-spinners";
-import axios from "axios";
+import axiosInstance from '../../axios/axiosInstance'
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -31,7 +31,7 @@ function AdminLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading({ ...loading, submit: true });
-    const { data } = await axios.post("/admin/auth/login", { email, password });
+    const { data } = await axiosInstance.post("/admin/auth/login", { email, password });
     if (data.err) {
       toast.error(data.message);
       setErrMessage(data.message);

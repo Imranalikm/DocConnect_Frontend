@@ -3,7 +3,7 @@ import UserHeader from "../UserHeader/UserHeader"
 import React, { useEffect, useState } from 'react'
 import DoctorList from '../DoctorList/DoctorList'
 import { useLocation, useParams } from "react-router-dom"
-import axios from "axios"
+import axiosInstance from '../../axios/axiosInstance'
 
 function UserDepartment() {
     const {id}= useParams()
@@ -16,9 +16,9 @@ function UserDepartment() {
             async function(){
                 let result
                 if(state.hospital){
-                    result = await axios.get("/user/doctors?department="+id+"&hospital="+state.hospital);
+                    result = await axiosInstance.get("/user/doctors?department="+id+"&hospital="+state.hospital);
                 }else{
-                    result = await axios.get("/user/doctors?department="+id);
+                    result = await axiosInstance.get("/user/doctors?department="+id);
                 }
                 if(!result.data.err){
                     setDoctorsList(result.data.doctors)

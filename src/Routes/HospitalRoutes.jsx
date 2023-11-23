@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {Navigate, Route, Routes} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import axiosInstance from '../axios/axiosInstance'
 import HospitalHomePage from '../pages/hospital/HospitalHomePage';
 import HospitalLoginPage from '../pages/hospital/HospitalLoginPage';
 import HospitalSignupPage from '../pages/hospital/HospitalSignupPage';
@@ -18,7 +18,7 @@ export default function HospitalRoutes() {
     
       useEffect(() => {
         (async function () {
-          let { data: hospitalData } = await axios.get("/hospital/auth/check");
+          let { data: hospitalData } = await axiosInstance.get("/hospital/auth/check");
           dispatch({ type: "hospital", payload: { login: hospitalData.loggedIn, details: hospitalData.hospital } })
         })()
       }, [refresh])

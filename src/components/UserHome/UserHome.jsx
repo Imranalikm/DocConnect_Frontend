@@ -1,5 +1,5 @@
   import React,{useState,useEffect} from 'react'
-  import axios from 'axios'
+  import axiosInstance from '../../axios/axiosInstance'
   import UserHeader from '../UserHeader/UserHeader'
   import UserDepartmentRow from '../UserDepartmentRow/UserDepartmentRow'
   import { Col, Container, Row } from 'react-bootstrap'
@@ -13,7 +13,7 @@
     useEffect(() => {
       (
         async function () {
-          const { data } = await axios.get("/user/departments")
+          const { data } = await axiosInstance.get("/user/departments")
           if (data.departments) {
             setDepartmentList(data.departments)
           }

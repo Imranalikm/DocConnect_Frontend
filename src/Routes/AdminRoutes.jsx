@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {Navigate, Route, Routes} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import axiosInstance from '../axios/axiosInstance';
 import AdminHomePage from '../pages/admin/AdminHomePage';
 import AdminLoginPage from '../pages/admin/AdminLoginPage';
 import AdminUsersPage from '../pages/admin/AdminUsersPage';
@@ -15,7 +15,7 @@ export default function AdminRoutes() {
     
       useEffect(() => {
         (async function () {
-          let { data: adminData } = await axios.get("/admin/auth/check");
+          let { data: adminData } = await axiosInstance.get("/admin/auth/check");
           dispatch({ type: "admin", payload: { login: adminData.loggedIn, details: adminData.admin } })
         })()
       }, [refresh])

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosInstance from '../../axios/axiosInstance'
 import * as React from 'react';
 import { useState } from 'react';
 import { Container, Dropdown, Table } from 'react-bootstrap';
@@ -45,7 +45,7 @@ export default function HospitalDoctor() {
             confirmButtonText: 'Yes, Block!'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const { data } = await axios.patch("/hospital/doctor/block", { id });
+                const { data } = await axiosInstance.patch("/hospital/doctor/block", { id });
                 setRefresh(!refresh)
             }
         })
@@ -61,7 +61,7 @@ export default function HospitalDoctor() {
             confirmButtonText: 'Yes, Unblock!'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                const { data } = await axios.patch("/hospital/doctor/unblock", { id });
+                const { data } = await axiosInstance.patch("/hospital/doctor/unblock", { id });
                 setRefresh(!refresh)
             }
         })
@@ -69,7 +69,7 @@ export default function HospitalDoctor() {
     useEffect(() => {
         (
             async function () {
-                const { data } = await axios.get("/hospital/doctors?name="+name);
+                const { data } = await axiosInstance.get("/hospital/doctors?name="+name);
                 if (!data.err) {
                     setDoctorList(data.doctors)
                 }

@@ -1,0 +1,64 @@
+.add-emr-main{
+    width: 100vw;
+    min-height: 100vh;
+    position: absolute;
+    top: 0px;
+    left:0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.123);
+    z-index: 1500;
+
+}
+.add-emr-container{
+    background-color: #fff;
+    width: 1200px;
+    max-width: 95%;
+    min-height: 50vh;
+    border-radius: 20px;
+    box-shadow: var(--defaultShadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    animation: startAnime .25s;
+
+}
+.add-emr-row.head{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.add-emr-row{
+    display: flex;
+}
+
+.add-emr-row.header{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+.emr-header-item{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.add-emr-row.btn{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+@keyframes startAnime {
+    from{
+        opacity: 0%;
+        transform: scale(0.8);
+    }
+    to{
+        opacity: 100%;
+        transform: scale(1);
+    }
+}

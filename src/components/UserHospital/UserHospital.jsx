@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import '../DoctorProfile/doctorProfile.css'
 import UserDepartmentRow from "../UserDepartmentRow/UserDepartmentRow"
 import { useParams } from "react-router-dom"
-import axios from "axios"
 import { getHospital } from "../../api/userApi"
 import Swal from "sweetalert2"
 

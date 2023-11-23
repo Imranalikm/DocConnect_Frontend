@@ -5,7 +5,7 @@ import loginImage from '../../assets/images/logo.PNG'
 import "../UserLogin/userlogin.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
-import axios from 'axios'
+import axiosInstance from '../../axios/axiosInstance'
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import validatePassword from '../../helpers/validatePassword';
@@ -55,7 +55,7 @@ function HospitalSignup() {
         e.preventDefault();
         setLoading({ ...loading, submit: true })
         if (validForm()) {
-            const { data } = await axios.post("/hospital/auth/register", {
+            const { data } = await axiosInstance.post("/hospital/auth/register", {
                 email, name, password, mobile, about, address, place, proof:finalImage, documentNo:docNo
             })
             if (data.err) {

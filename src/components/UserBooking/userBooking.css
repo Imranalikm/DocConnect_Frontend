@@ -1,0 +1,85 @@
+.user-booking-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+}
+
+.user-booking-item {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    box-shadow: var(--defaultShadow);
+    padding: 10px;
+}
+
+.ub-dr-profile img {
+    width: 90px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.ub-dr-desc {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.ub-dr-desc-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.ub-dr-desc-item div {
+    display: flex;
+    height: 27px;
+    font-size: .9rem;
+}
+
+.ub-dr-desc-item div p:last-child{
+    font-weight: 550;
+    margin-left: 5px;
+}
+
+.ub-dr-desc {
+    padding: 0px 10px;
+}
+
+.profile-comp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0px;
+}
+.profile-comp img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    box-shadow: var(--defaultShadow);
+}
+
+
+@media(max-width:600px){
+    .booking-status{
+        width: 100px;
+    }
+    .ub-dr-desc{
+        min-width: 260px;
+    }
+}
+.editbtn{
+    background-color: black;
+    color: white;
+    font-weight: bolder;
+    padding: 8px;
+    border-radius: .75rem;
+    margin-top:8px;
+}

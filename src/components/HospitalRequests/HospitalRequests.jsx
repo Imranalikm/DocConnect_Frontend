@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosInstance from '../../axios/axiosInstance'
 import * as React from "react";
 import { useState } from "react";
 import { Container, Dropdown, Table } from "react-bootstrap";
@@ -22,7 +22,7 @@ export default function HospitalRequests() {
   React.useEffect(() => {
     (async function () {
       try {
-        const { data } = await axios.get("/admin/hospital/requests");
+        const { data } = await axiosInstance.get("/admin/hospital/requests");
         console.log(data);
         if (!data.err) {
           setHospitalList(data.hospitalRequests);
@@ -45,7 +45,7 @@ export default function HospitalRequests() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         setLoad(true);
-        const { data } = await axios.post("/admin/hospital/accept", { email });
+        const { data } = await axiosInstance.post("/admin/hospital/accept", { email });
         if (!data.err) {
           Swal.fire("Success!", "Successfully Accepted", "success");
         } else {
@@ -69,7 +69,7 @@ export default function HospitalRequests() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         setLoad(true);
-        const { data } = await axios.post("/admin/hospital/reject", { email });
+        const { data } = await axiosInstance.post("/admin/hospital/reject", { email });
         if (!data.err) {
           Swal.fire("Success!", "Successfully Rejected", "success");
           setRefresh(!refresh);

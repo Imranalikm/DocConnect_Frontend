@@ -1,5 +1,5 @@
 import { InputLabel, MenuItem, Select, TextField } from '@mui/material'
-import axios from 'axios'
+import axiosInstance from '../../../axios/axiosInstance'
 import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { ClipLoader } from 'react-spinners'
@@ -45,7 +45,7 @@ export default function EditHospitalProfile({ setShowModal, setRefresh, refresh,
     async function handleSubmit(e) {
         e.preventDefault();
         setLoading({ ...loading, submit: true })
-        const {data}= await axios.patch("/hospital/profile", {image:finalImage, name, about, address, place, mobile});
+        const {data}= await axiosInstance.patch("/hospital/profile", {image:finalImage, name, about, address, place, mobile});
         if(data.err){
             setErrMessage(data.message)
         }

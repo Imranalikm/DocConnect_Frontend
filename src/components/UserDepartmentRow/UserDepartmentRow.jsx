@@ -26,11 +26,11 @@ function UserDepartmentRow({ list, hospitalWise, hospitalId }) {
                                 {
                                     list[0] ?
                                         list.map((item, index) => {
-                                            return <Col xs={6} md={2} key={index}>
+                                            return <Col xs={6} md={3} key={index}>
                                                 <Link to={'/department/' + item._id} state={{hospital:hospitalWise ? hospitalId : null}} >
                                                     <div className="department-item mt-3" >
                                                         <div className="department-item-box" >
-                                                            <img src={img1} alt="" />
+                                                            <img src={item.image.url} alt="" />
                                                             <b>{item.name}</b>
                                                         </div>
 

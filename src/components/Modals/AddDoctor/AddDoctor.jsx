@@ -1,5 +1,5 @@
 import { InputLabel, MenuItem, Select, TextField } from '@mui/material'
-import axios from 'axios'
+import axiosInstance from '../../../axios/axiosInstance'
 import React, { useEffect, useState } from 'react'
 import { Form, FormControl } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -26,7 +26,7 @@ function AddDoctor({ setShowModal, setRefresh, refresh }) {
     useEffect(()=>{
         (
           async function(){
-            const {data} = await axios.get("/hospital/departments")
+            const {data} = await axiosInstance.get("/hospital/departments")
             if(!data.err){
                 setDepartmentList(data.departments)
             }
@@ -38,7 +38,7 @@ function AddDoctor({ setShowModal, setRefresh, refresh }) {
         e.preventDefault();
         setLoading({ ...loading, submit: true })
         if (validForm()) {
-            const { data } = await axios.post("/hospital/doctor", {
+            const { data } = await axiosInstance.post("/hospital/doctor", {
                 email, password, name, department, qualification, specialization, fees, about, tags
             })
             if (data.err) {

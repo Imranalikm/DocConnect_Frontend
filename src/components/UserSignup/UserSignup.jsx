@@ -6,7 +6,7 @@ import logo from "../../assets/images/logoheader.jpg"
 import "../UserLogin/userlogin.css";
 import { Link } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import axios from "axios";
+import axiosInstance from '../../axios/axiosInstance'
 import VerifyOtp from "../verifyOtp/VerifyOtp";
 import validatePassword from "../../helpers/validatePassword";
 import Lottie from "lottie-react"; // Import the Lottie component
@@ -40,7 +40,7 @@ function UserSignup() {
     if (validForm()) {
       if (!loading.submit) {
         setLoading({ ...loading, submit: true });
-        let { data } = await axios.post("/user/auth/register", { email });
+        let { data } = await axiosInstance.post("/user/auth/register", { email });
         console.log(data);
         if (data.err) {
           setErrMessage(data.message);

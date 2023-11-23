@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosInstance from '../../axios/axiosInstance'
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Container, Table } from 'react-bootstrap';
@@ -23,7 +23,7 @@ export default function AdminUsers() {
     (
       async function () {
         try {
-          const { data } = await axios.get("/admin/users?name=" + name);
+          const { data } = await axiosInstance.get("/admin/users?name=" + name);
           if (!data.err) {
             setUsersList(data.users);
           }
@@ -46,7 +46,7 @@ export default function AdminUsers() {
       confirmButtonText: `Yes, ${action}!`
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const { data } = await axios.patch(`/admin/user/${isBlocked ? 'un' : ''}block`, { id });
+        const { data } = await axiosInstance.get(`/admin/user/${isBlocked ? 'un' : ''}block`, { id });
         setRefresh(!refresh);
       }
     });

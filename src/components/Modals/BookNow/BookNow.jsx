@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useEffect } from 'react'
-import axios from 'axios'
+import axiosInstance from '../../../axios/axiosInstance'
 import './BookNow.css'
 import Swal from 'sweetalert2'
 import { TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -17,6 +18,7 @@ function BookNow({ daysAvailable, doctor, setShowBookNow, refresh, setRefresh}) 
     const [times, setTimes] = useState([])
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
+    
     const navigate = useNavigate()
 
     
@@ -35,7 +37,7 @@ function BookNow({ daysAvailable, doctor, setShowBookNow, refresh, setRefresh}) 
     }
     
     const handleBooking = async () => {
-        const { data } = await axios.post("/user/payment", {fees:doctor.fees});
+        const { data } = await axiosInstance.post("/user/payment", {fees:doctor.fees});
         if (!data.err) {
             handleRazorPay(data.order);
         }
@@ -53,25 +55,43 @@ function BookNow({ daysAvailable, doctor, setShowBookNow, refresh, setRefresh}) 
             
             },
             handler: async (response) => {
-                const { data } = await axios.post("/user/payment/verify", { response, bookDate, bookTimeSlot,bookingTime,name, age, doctorId: doctor._id, hospitalId: doctor.hospitalId, fees:doctor.fees });
-                if(data.err){
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: data.message,
-                    })
-                }else{
-                    Swal.fire(
-                        'Success!',
-                        'Successfully Booked',
-                        'success'
-                      )
-                      navigate("/profile")
-                }
-                setShowBookNow(false)
-                setRefresh(!refresh)
-            }
-        }
+                try {
+                    const { data } = await axiosInstance.post("/user/payment/verify", {
+                      response,
+                      bookDate,
+                      bookTimeSlot,
+                      bookingTime,
+                      name,
+                      age,
+                      doctorId: doctor._id,
+                      hospitalId: doctor.hospitalId,
+                      fees: doctor.fees,
+                    });
+          
+                    if (data.err) {
+                      toast.error(data.message, {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                      });
+                    } else {
+                        localStorage.setItem('bookingSuccess', true);
+                      // Add this line for debugging
+                      toast.success('Successfully Booked', {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                      });
+                      navigate("/profile");
+                    }
+                  } catch (error) {
+                    console.error("Error:", error);
+                    toast.error('An error occurred. Please try again later.', {
+                      position: toast.POSITION.BOTTOM_CENTER,
+                    });
+                  } finally {
+                   
+                    setShowBookNow(false);
+                    setRefresh(!refresh);
+                  }
+                },
+              };
         var rzp1 = new window.Razorpay(options);
         rzp1.open();
         rzp1.on('payment.failed', (response) => {
@@ -97,9 +117,12 @@ function BookNow({ daysAvailable, doctor, setShowBookNow, refresh, setRefresh}) 
 
     return (
         <>
+
+
         
         <div className="book-now-main">
             <div className="booking-container">
+           
             
                 <div className="booking-row headr">
                     <h4>Book Now</h4>

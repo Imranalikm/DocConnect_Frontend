@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Container, Button, Table } from 'react-bootstrap';
 import { RiSearch2Line } from 'react-icons/ri';
 import AdminHeader from '../AdminHeader/AdminHeader';
@@ -7,6 +6,8 @@ import AdminSidebar from '../AdminSidebar/AdminSidebar';
 import Swal from 'sweetalert2';
 import { Backdrop, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
+import axiosInstance from '../../axios/axiosInstance'
+
 
 export default function AdminHospitals() {
   const [hospitalList, setHospitalList] = useState([]);
@@ -22,7 +23,7 @@ export default function AdminHospitals() {
   useEffect(() => {
     async function fetchHospitalData() {
       try {
-        const { data } = await axios.get('/admin/hospitals?name=' + name);
+        const { data } = await axiosInstance.get('/admin/hospitals?name=' + name);
         if (!data.err) {
           setHospitalList(data.hospitals);
         }
@@ -45,7 +46,7 @@ export default function AdminHospitals() {
       confirmButtonText: 'Yes, Block!',
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const { data } = await axios.patch('/admin/hospital/block', { id });
+        const { data } = await axiosInstance.patch('/admin/hospital/block', { id });
         setRefresh(!refresh);
       }
     });
@@ -62,7 +63,7 @@ export default function AdminHospitals() {
       confirmButtonText: 'Yes, Unblock!',
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const { data } = await axios.patch('/admin/hospital/unblock', { id });
+        const { data } = await axiosInstance.patch('/admin/hospital/unblock', { id });
         setRefresh(!refresh);
       }
     });

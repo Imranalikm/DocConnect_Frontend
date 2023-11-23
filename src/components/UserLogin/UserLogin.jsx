@@ -5,7 +5,7 @@ import loginImage from "../../assets/images/logo.PNG";
 import "./userlogin.css";
 import { Link } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import axios from "axios";
+import axiosInstance from '../../axios/axiosInstance'
 import { useDispatch } from "react-redux";
 import logo from "./../../assets/images/logoheader.jpg";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
@@ -36,7 +36,7 @@ function UserLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading({ ...loading, submit: true });
-    const { data } = await axios.post("/user/auth/login", { email, password });
+    const { data } = await axiosInstance.post("/user/auth/login", { email, password });
     if (data.err) {
       setErrMessage(data.message);
     } else {

@@ -1,5 +1,5 @@
 import { Avatar } from '@mui/material'
-import axios from 'axios'
+import axiosInstance from '../../axios/axiosInstance'
 import React from 'react'
 import { Dropdown } from 'react-bootstrap'
 import { RiMenu2Fill } from 'react-icons/ri'
@@ -24,7 +24,7 @@ function HospitalHeader(props) {
       confirmButtonText: 'Yes, Logout!'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await axios.get("/hospital/auth/logout")
+        await axiosInstance.get("/hospital/auth/logout")
         dispatch({ type: "refresh" })
       }
     })

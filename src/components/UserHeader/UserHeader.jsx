@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Avatar, Button, getFormLabelUtilityClasses, Menu, MenuItem } from '@mui/material'
 import './UserHeader.css'
 import { Container, Row } from 'react-bootstrap'
-import axios from 'axios'
+import axiosInstance from '../../axios/axiosInstance'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from "./../../../src/assets/images/logoheader.jpg"
@@ -26,7 +26,7 @@ function UserHeader({fullWidth}) {
       confirmButtonText: 'Logout'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const { data } = await axios.get("user/auth/logout")
+        const { data } = await axiosInstance.get("user/auth/logout")
         dispatch({ type: "refresh" })
       }
     })

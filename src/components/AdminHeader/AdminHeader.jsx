@@ -1,5 +1,4 @@
 import { Avatar } from '@mui/material'
-import axios from 'axios'
 import React from 'react'
 import { Dropdown } from 'react-bootstrap'
 import { RiMenu2Fill } from 'react-icons/ri'
@@ -8,6 +7,8 @@ import Swal from 'sweetalert2'
 import './AdminHeader.css'
 import logo from './../../assets/images/logoheader.jpg'
 import avatar from './../../assets/images/avatar.webp'
+import axiosInstance from '../../axios/axiosInstance'
+
 function AdminHeader(props) {
   const dispatch = useDispatch()
   async function handleLogout(e) {
@@ -22,7 +23,7 @@ function AdminHeader(props) {
       confirmButtonText: 'Logout'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const { data } = await axios.get("/admin/auth/logout")
+        const { data } = await axiosInstance.get("/admin/auth/logout")
         
         dispatch({ type: "refresh" })
       }

@@ -10,6 +10,23 @@
     object-fit: cover;
     border-radius:2rem ;
 }
+.hospital-profile-img{
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+
+    border-radius:2rem ;
+}
+.hospital-profile-img img{
+    width: 100% ;
+    height:450px;
+    object-fit: cover;
+    border-radius:2rem ;
+}
+.hospital-profile-img:hover{
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
+
+    border-radius:2rem ;
+}
+
 
 .dr-profile-img{
     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1);
@@ -82,9 +99,10 @@
 }
 .dr-profile-sec-row.button button:first-child{
     background: none;
-    background-color: white;
-    border: 1px solid var(--mainColor);
-    color: var(--mainColor);
+    background: linear-gradient(90deg, hsla(254, 68%, 9%, 1) 0%, hsla(269, 97%, 37%, 1) 33%, hsla(320, 77%, 55%, 1) 66%,  hsla(254, 68%, 9%, 1) 100%);
+
+    
+    color: white;
 }
 
 .doctor-time-list{

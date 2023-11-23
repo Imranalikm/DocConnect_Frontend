@@ -5,7 +5,7 @@ import loginImage from '../../assets/images/logo.PNG'
 import "../UserLogin/userlogin.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
-import axios from 'axios'
+import axiosInstance from '../../axios/axiosInstance'
 import { useDispatch } from 'react-redux';
 
 function HospitalLogin() {
@@ -21,7 +21,7 @@ function HospitalLogin() {
         e.preventDefault();
         setLoading({ ...loading, submit: true })
         if (validForm()) {
-            const { data } = await axios.post("/hospital/auth/login", {
+            const { data } = await axiosInstance.post("/hospital/auth/login", {
                 email, password
             })
             if (data.err) {

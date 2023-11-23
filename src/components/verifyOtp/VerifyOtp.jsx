@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import { TextField } from "@mui/material";
 import otpImage from "../../assets/images/otp.png";
 import "../UserLogin/userlogin.css";
-import axios from "axios";
+import axiosInstance from '../../axios/axiosInstance'
 import { useDispatch } from "react-redux";
 import { ClipLoader } from "react-spinners";
 
@@ -43,7 +43,7 @@ function VerifyOtp(props) {
   async function handleSubmit(e) {
     e.preventDefault();
     setLoading({ ...loading, submit: true });
-    let { data } = await axios.post("/user/auth/register/verify", {
+    let { data } = await axiosInstance.post("/user/auth/register/verify", {
       otp,
       ...props.data,
     });
@@ -61,7 +61,7 @@ function VerifyOtp(props) {
       setCountdown(30);
 
       try {
-        const response = await axios.post('/user/auth/register/verify/resend', {
+        const response = await axiosInstance.post('/user/auth/register/verify/resend', {
           ...props.data
         });
 

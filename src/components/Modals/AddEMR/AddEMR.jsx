@@ -11,12 +11,13 @@ import {
   import Swal from "sweetalert2";
   import { addDoctorEMR, getDoctorEMR } from "../../../api/doctorApi";
   import "./AddEMR.css";
-  
+  import logo from "../../../assets/images/emrlogo.png"
   export default function AddEMR({booking, setShowAddEmr, refresh, setRefresh}) {
     const [gender, setGender] = useState("");
     const [weight, setWeight] = useState("");
     const [hospitalId, sethospitalId] = useState("");
     const [prescription, setPrescription] = useState("");
+    const [doctorName,setDoctorName]=useState("")
   
     const handleSave=async ()=>{
       const data = await addDoctorEMR(booking, weight, prescription, gender)
@@ -32,10 +33,12 @@ import {
       (
         async function(){
           const data=await getDoctorEMR(booking._id);
+          console.log(data);
           if(!data.err && data.emr){
             setGender(data.emr.gender);
             setWeight(data.emr.weight)
             setPrescription(data.emr.prescription)
+            setDoctorName(data.emr.doctorId.name)
           }
         }
       )()
@@ -44,6 +47,7 @@ import {
       <div className="add-emr-main">
         <div className="add-emr-container">
           <div className="add-emr-row head">
+            <img src={logo} alt="" style={{height:'80px',width:'150px'}}/>
             <h4>Medical Report</h4>
             {/* <b>International Hospital, tirur, 9809786756</b> */}
           </div>
@@ -97,7 +101,7 @@ import {
                 variant="filled"
                 fullWidth
                 readOnly
-                value={"Dr. Fasil"}
+                value={doctorName}
               />
             </div>
             <div className="emr-header-item">

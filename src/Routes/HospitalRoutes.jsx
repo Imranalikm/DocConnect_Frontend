@@ -21,7 +21,7 @@ export default function HospitalRoutes() {
           let { data: hospitalData } = await axiosInstance.get("/hospital/auth/check");
           dispatch({ type: "hospital", payload: { login: hospitalData.loggedIn, details: hospitalData.hospital } })
         })()
-      }, [refresh])
+      }, [refresh,hospital])
 
   return (
     <Routes>

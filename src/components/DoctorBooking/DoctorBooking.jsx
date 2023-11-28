@@ -59,7 +59,7 @@ export default function DoctorBooking() {
                             </div>
                             {/* <button className='btn btn-dark' onClick={addDoctor}>Add Doctor</button> */}
                         </div>
-                        <Table className='table-main' responsive>
+                        <Table className='table-main' striped bordered hover responsive>
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -96,7 +96,7 @@ export default function DoctorBooking() {
                                                 {item.status ? (item?.status==="upcoming" && new Date(item?.date) <= new Date() ? "Not Attended" : item?.status ) : 'pending'}
                                             </td>
                                             <td>
-                                                <button className='btn btn-outline-dark btn-sm' onClick={()=>handleShowEmr(item)}>Show EMR</button>
+                                                <button className='btn ' style={{backgroundColor:'violet',borderRadius:'10px',color:'white',fontWeight:'bold'}}   onClick={()=>handleShowEmr(item)}>Show EMR</button>
                                             </td>
                                         </tr>
                                     })

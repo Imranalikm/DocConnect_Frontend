@@ -11,12 +11,26 @@
 }
 
 .booking-container {
-    background-color: #fff;
-    width: 400px;
+    background: #ffffff;
+    width: 700px;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 90vh;
+    scrollbar-width: thin; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 11 */
 }
+
+.booking-container::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+}
+
+.booking-container::-webkit-scrollbar-thumb {
+    background-color: #beb8b8; /* Set the color of the scrollbar thumb */
+    border-radius: 4px; /* Set the border radius of the scrollbar thumb */
+}
+
 
 .headr {
     text-align: center;
@@ -51,7 +65,7 @@
 }
 
 .booking-row-day input:checked + label {
-    background-color: rgb(9, 53, 0);
+    background: linear-gradient(90deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);;
     color: #ffffff;
     border-radius: .5rem;
     padding: 8px;

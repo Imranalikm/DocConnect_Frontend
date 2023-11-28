@@ -66,34 +66,42 @@ function UserDoctor() {
                     setDoctor({ ...data.doctor, reviewAccess: data.reviewAccess, reviews: data.reviews, rating: data.rating })
                 }
                 const { data: scheduleData } = await axiosInstance.get("/user/doctor/schedule/" + id);
-                console.log(scheduleData)
-                if (!scheduleData.err) {
-                    let n = 0;
-                    let date = new Date()
-                    let tempDaysAvailable = []
-                    while (n < 9) {
-                        date = new Date(new Date().setDate(new Date(date).getDate() + 1));
-                        console.log(date)
-                        let day = new Date(date).getDay();
-                        console.log(scheduleData.schedule[days[day]])
-                        if (scheduleData.schedule[days[day]][0]) {
-                            console.log( date,scheduleData.schedule[days[day]])
-                            const { data } = await axiosInstance.post("/user/check-time", {
-                                date,
-                                schedule: scheduleData.schedule[days[day]]
-                            })
-                            console.log(data)
-                            if (!data.err) {
-                                tempDaysAvailable.push({
-                                    ...data.result
-                                })
-                            }
-                        }
-                        n++;
-                    }
-                    console.log(tempDaysAvailable)
-                    setDaysAvailable([...tempDaysAvailable])
-                }
+
+console.log(scheduleData);
+
+if (!scheduleData.err) {
+    const numDaysToCheck = 9;  // Adjust this based on your requirements
+    let tempDaysAvailable = [];
+
+    for (let n = 1; n <= numDaysToCheck; n++) {
+        const currentDate = new Date();
+        const dateToCheck = new Date(currentDate.setDate(currentDate.getDate() + n));
+
+        console.log(dateToCheck);
+
+        const day = dateToCheck.getDay();
+        console.log(day);
+        console.log(scheduleData.schedule[days[day]]);
+
+        if (scheduleData.schedule[days[day]][0]) {
+            console.log(dateToCheck, scheduleData.schedule[days[day]]);
+            const { data } = await axiosInstance.post("/user/check-time", {
+                date: dateToCheck,
+                schedule: scheduleData.schedule[days[day]],
+            });
+
+            console.log(data);
+
+            if (!data.err) {
+                tempDaysAvailable.push({ ...data.result });
+            }
+        }
+    }
+
+    console.log(tempDaysAvailable);
+    setDaysAvailable([...tempDaysAvailable]);
+}
+
             }
         )()
     }, [refresh])
@@ -107,7 +115,7 @@ function UserDoctor() {
             <Container>
                 <div className="admin-container">
                    
-                    <Row>
+                    <Row style={{borderRadius:'15px'}}>
                         <Col sm={12} md={5}>
                             <div className="dr-profile-sec sec-1">
                                 <div className="dr-profile-img">
@@ -167,7 +175,7 @@ function UserDoctor() {
                         </Col>
                     </Row>
                     
-                    <Row>
+                    <Row style={{borderRadius:'15px'}}>
                         <Col sm={12} md={5}>
                             <div className="dr-profile-sec sec-1">
                                 <div className="dr-profile-sec-row">

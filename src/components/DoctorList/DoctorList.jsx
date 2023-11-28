@@ -15,15 +15,17 @@ function DoctorList({ list, title }) {
         'Nephrology': 'lightgreen',
         'General Medicine':'#fb6f92',
         'Dental Medicine':'#fcbf49',
-        'Orthology':'#deaaff'
+        'Orthology':'#deaaff',
+        'Pediatry':'#0d3b66',
+        'Gynacology':'  '
       }
     return (
         <div>
-            <Row className='d-flex justify-content-center'>
-                <h5 className='text-center'>{title ? title : "Doctors"}</h5>
+            <Row className='d-flex justify-content-center' style={{borderRadius:'15px'}}>
+                <h5 className='text-center' style={{marginTop:'10px'}}>{title ? title : "Doctors"}</h5>
 
             </Row>
-            <Row className='d-flex justify-content-center mt-5'>
+            <Row className='d-flex justify-content-center mt-5 mb-5' style={{borderRadius:'15px'}}>
                 {
                     list[0] ?
                     list.map((item, index) => {

@@ -15,12 +15,13 @@ import autoTable from 'jspdf-autotable'
 import formatDate from "../../../helpers/dateFormat";
 
   export default function ViewDoctorEmr({booking, setShowAddEmr}) {
+    console.log(booking)
     const [gender, setGender] = useState("");
     const [weight, setWeight] = useState("");
     const [prescription, setPrescription] = useState("");
     const [noData, setNoData]=useState(true)
     const [data, setData]=useState({})
-  
+    const [doctorName,setDoctorName]=useState("")
     const downloadReport=async ()=>{
       if(data){
         const doc = new jsPDF();
@@ -54,11 +55,13 @@ import formatDate from "../../../helpers/dateFormat";
       (
         async function(){
           const data=await getDoctorEMR(booking._id);
+          console.log(data)
           if(!data.err && data.emr){
             setData(data.emr)
             setNoData(false)
             setGender(data.emr.gender);
-            setWeight(data.emr.weight)
+            setWeight(data.emr.weight);
+            setDoctorName(data.emr.doctorId.name)
             setPrescription(data.emr.prescription)
           }
         }
@@ -118,10 +121,10 @@ import formatDate from "../../../helpers/dateFormat";
               <TextField
                 id="filled-basic"
                 label="Doctor Name"
-                variant="filled"
+                variant="filled"  
                 fullWidth
                 readOnly
-                value={"Dr. Fasil"}
+                value={doctorName}
               />
             </div>
             <div className="emr-header-item">

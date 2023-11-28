@@ -56,7 +56,7 @@ function UserSearch() {
         <div className="user-main">
             <UserHeader />
             <Container>
-                <Row className="mt-3">
+                <Row className="mt-3" style={{borderRadius:'15px'}}>
                     <div className="user-search-box">
                         <form className="user-search-input" onSubmit={(e) => { e.preventDefault(); handleSearch(); }}>
                             <input type="text" placeholder='search' value={name} onChange={(e) => setName(e.target.value)} />
@@ -103,13 +103,13 @@ function UserSearch() {
                 </Row>
                 {
                     searchType === "doctor" &&
-                    <Row className='mt-5'>
+                    <Row className='mt-5' style={{borderRadius:'25px'}}>
                         <DoctorList list={doctorList}  />
                     </Row>
                 }
                 {
                     searchType === 'hospital' &&
-                    <Row className='mt-5'>
+                    <Row className='mt-5' style={{borderRadius:'25px'}}>
                         <HospitalList list={hospitalList}  />
                     </Row>
                 }

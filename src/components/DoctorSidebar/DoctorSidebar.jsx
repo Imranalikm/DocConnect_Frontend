@@ -3,6 +3,10 @@ import '../AdminSidebar/Sidebar.css'
 import { RiArchiveDrawerLine, RiBuilding4Line, RiFileList3Fill, RiFileList3Line, RiHome2Line, RiHospitalLine, RiUser2Line, RiUserLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 import {BsChatLeftText} from "react-icons/bs"
+import {FaHome} from 'react-icons/fa'
+import {GrSchedules } from 'react-icons/gr'
+import {CgProfile } from 'react-icons/cg'
+
 
 function DoctorSidebar({ page }) {
   return (
@@ -13,7 +17,7 @@ function DoctorSidebar({ page }) {
             
             <div className="admin-sideItem">
 
-              <RiHome2Line className='icon' />
+              <FaHome className='icon' />
               <span>Home</span>
             </div>
           </li>
@@ -24,7 +28,7 @@ function DoctorSidebar({ page }) {
             
             <div className="admin-sideItem">
 
-              <RiArchiveDrawerLine className="icon" />
+              <GrSchedules  className="icon" />
               <span>Schedules</span>
             </div>
           </li>
@@ -47,7 +51,7 @@ function DoctorSidebar({ page }) {
               
               <div className="admin-sideItem">
 
-                <RiUserLine className='icon' />
+                <CgProfile  className='icon' />
                 <span>Profile</span>
               </div>
             </li>

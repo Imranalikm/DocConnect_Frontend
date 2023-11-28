@@ -11,7 +11,8 @@ import UserSearchPage from "../pages/user/UserSearchPage";
 import UserHospitalPage from "../pages/user/UserHospitalPage"
 import UserDoctorPage from "../pages/user/UserDoctorPage";
 import UserProfilePage from '../pages/user/UserProfilePage'
-
+import UserDocBotPage from "../pages/user/userDocBotPage.jsx";
+import UserAuthCallbackPage from "../pages/user/UserAuthCallbackPage.jsx"
 export default function UserRoutes() {
   const { refresh, user } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ export default function UserRoutes() {
         <Route path="/hospital/:id" element={<UserHospitalPage />} />
         <Route path="/doctor/:id" element={<UserDoctorPage/>}/>
         <Route path="/profile" element={<UserProfilePage />} />
-       
+        <Route path="/docbot" element={<UserDocBotPage/>}/>
       </Route>
 
       {user.login === false && (
@@ -45,6 +46,7 @@ export default function UserRoutes() {
          
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<UserSignupPage />} />
+          <Route path="/callback" element={<UserAuthCallbackPage />} />
         
         
         </>
@@ -53,6 +55,7 @@ export default function UserRoutes() {
         <>
           <Route path="/login" element={<Navigate to={"/"} />} />
           <Route path="/signup" element={<Navigate to="/" />} />
+          <Route path="/callback" element={<UserAuthCallbackPage />} />
           
          
         </>

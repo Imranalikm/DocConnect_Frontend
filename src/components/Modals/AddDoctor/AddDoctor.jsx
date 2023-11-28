@@ -83,9 +83,9 @@ function AddDoctor({ setShowModal, setRefresh, refresh }) {
                 <div className="modal-form-row">
                     <TextField id="outlined-basic" value={about} onChange={(e) => setAbout(e.target.value)} label="About" type="text" variant="outlined" fullWidth className='input' />
                 </div>
-                <div className="modal-form-row">
+                {/* <div className="modal-form-row">
                     <TextField id="outlined-basic" value={tags} onChange={(e) => setTags(e.target.value)} label="Symptons" type="text" variant="outlined" fullWidth className='input' />
-                </div>
+                </div> */}
                 <div className="modal-form-row">
                     <TextField id="outlined-basic" value={fees} onChange={(e) => setFees(e.target.value)} label="Fees" type="number" variant="outlined" fullWidth className='input' />
                 </div>

@@ -9,6 +9,8 @@ import axiosInstance from '../../axios/axiosInstance'
 import { useDispatch } from "react-redux";
 import logo from "./../../assets/images/logoheader.jpg";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { FcGoogle } from "react-icons/fc";
+
 
 function UserLogin() {
   const [email, setEmail] = useState("");
@@ -30,6 +32,19 @@ function UserLogin() {
     return true;
   };
 
+  const handleGoogleLogin = async (e) => {
+    e.preventDefault()
+    let redirectUri = "http://localhost:3000"+"/user/auth/google/callback"
+    let clientId = "875796229095-mvsbce4r9va50psiblggbsqv1jhpv24i.apps.googleusercontent.com"
+    try {
+        window.open(
+            `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=email%20profile`,
+            "_self"
+        )
+    } catch (error) {
+        console.log('Google login error:', error);
+    }
+  }
   const [loading, setLoading] = useState({
     submit: false,
   });
@@ -46,10 +61,12 @@ function UserLogin() {
   };
 
   return (
-    <div className="login-main">
+    
+    <div className="login-main" >
+      
       <Row>
         <nav className="login-nav">
-          <Container>
+          <Container fluid>
             <Row>
               {/* <img
                 src={logo}
@@ -61,15 +78,15 @@ function UserLogin() {
         </nav>
       </Row>
       <Row>
-        <div className="login-container">
+        <div className="login-container" >
           <Row>
             <Col md={6}>
-              <div className="login-sec bg">
+              <div className="login-sec bg" >
                 <img src={loginImage} alt="" />
               </div>
             </Col>
             <Col md={6}>
-              <div className="login-sec">
+              <div className="login-sec" >
                 <form className="login-box" onSubmit={handleSubmit}>
                   <div className="login-row head">
                     <h3>Login</h3>
@@ -126,12 +143,12 @@ function UserLogin() {
                                             Demo Login
                                     </Button> */}
                   </div>
-                  <div className="login-row"></div>
+                  <div className="login-row">OR</div>
                   <div className="login-row google-btn">
-                    {/* <Button variant="contained" onClick={handleGoogleLogin}>
+                    <Button variant="contained" onClick={handleGoogleLogin}>
                                             <FcGoogle className='icon' />
                                             Login with Google
-                                    </Button> */}
+                                    </Button>
                   </div>
                   <div className="login-row mt-3">
                     <Link to="/signup" className="link">

@@ -7,6 +7,7 @@ import ProtectedDoctorRoutes from "../utils/ProtectedDoctorRoutes"
 import DoctorHomePage from "../pages/doctor/DoctorHomePage"
 import DoctorProfilePage from "../pages/doctor/DoctorProfilePage"
 import DoctorBookingPage from "../pages/doctor/DoctorBookingPage"
+import DoctorSchedulePage from "../pages/doctor/DoctorSchedulePage"
 
 export default function DoctorRoutes() {
   const { refresh, doctor } = useSelector((state) => state);
@@ -26,6 +27,7 @@ export default function DoctorRoutes() {
         <Route path="/" element={<DoctorHomePage />} />
         <Route path="/profile" element={<DoctorProfilePage />} />
         <Route path="/booking" element={<DoctorBookingPage />} />
+        <Route path="/schedule" element={<DoctorSchedulePage />} />
       </Route>
 
 

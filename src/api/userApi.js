@@ -55,3 +55,16 @@ export async function addHospitalReview(rating, review, hospitalId){
   }
   return data
 }
+
+export async function getUserEMR(bookingId) {
+  const {data} = await axiosInstance.get("/user/emr/"+bookingId)
+  console.log(data)
+  if(data.err){
+      Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: data.message,
+        })
+  }
+  return data;
+}

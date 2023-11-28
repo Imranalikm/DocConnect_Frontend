@@ -9,7 +9,7 @@
   import notFoundImg from '../../assets/images/no-result.jpg'
   import { useSelector } from 'react-redux'
   import formatDate from '../../helpers/dateFormat'
- 
+  import ViewEmr from '../Modals/ViewEmr/ViewEmr'
 
   export default function UserBooking() {
     const [bookingList, setBookingList] = useState([])
@@ -17,9 +17,15 @@
     const [booking, setBooking] = useState({})
     const [filter, setFilter] = useState('all')
     const [showConfetti, setShowConfetti] = useState(false);
+    const [showAddEmr, setShowAddEmr] = useState(false)
 
     const user = useSelector((state) => state.user.details)
+    
+    const showEmr = (data) => {
 
+      setBooking(data);
+      setShowAddEmr(true)
+    }
     useEffect(() => {
       (
         async function () {
@@ -37,6 +43,7 @@
       if (bookingSuccess === 'true') {
         setShowConfetti(true);
         localStorage.removeItem('bookingSuccess');
+        setShowConfetti(false);
       }
     }, []);
 
@@ -86,10 +93,7 @@
                     <div className="ub-dr-desc-item">
                     
                       <b>{item.doctorId.name}</b>
-                      <div>
-                        <p>Tokeni : </p>
-                        <p> {item.token}</p>
-                      </div>
+                     
                       <div className="mt-2">
                         <p>Date : </p>
                         <p>{formatDate(item.date)}</p>
@@ -99,13 +103,17 @@
                         <p>Time : </p>
                         <p> {new Date(item.time).toLocaleTimeString('en-US')}</p>
                       </div>
+                      <div>
+                        <p>Token : </p>
+                        <p> {item.token}</p>
+                      </div>
                      
 
                     </div>
                         <div className="booking-status d-flex align-items-center justify-content-center" style={{ gap: "10px", flexWrap: "wrap" }}>
                             <>
                             <Chip label={"Upcoming"} color={item.status == 'consulted' ? "primary" : "secondary"} variant="outlined" />
-                              <button className='btn btn-dark' >Cancel</button>
+                              {/* <button className='btn btn-dark' >Cancel</button> */}
                             </>
                         </div>
                   </div>
@@ -147,10 +155,10 @@
                             :
                             <>
                             <Chip label={"Upcoming"} color={item.status == 'consulted' ? "primary" : "secondary"} variant="outlined" />
-                            {
+                            {/* {
                               item.status == 'upcoming' &&
                               <button className='btn btn-dark' >Cancel</button>
-                            }
+                            } */}
                             </>
                             
                           }
@@ -158,10 +166,10 @@
                         :
                         <div className="booking-status d-flex align-items-center justify-content-center" style={{ gap: "10px", flexWrap: "wrap" }}>
                           <Chip label={item.status} color={item.status == 'consulted' ? "primary" : "secondary"} variant="outlined" />
-                          {
+                          {/* {
                               item.status == 'completed' &&
-                              <button className='btn btn-dark'>View EMR</button>
-                            }
+                              <button className='btn btn-dark' onClick={showEmr}>View EMR</button>
+                            } */}
                         </div>
                     }
                   </div>
@@ -182,7 +190,10 @@
         </Container>
       
 
-
+        {
+        showAddEmr &&
+        <ViewEmr booking={booking} setShowAddEmr={setShowAddEmr} />
+      }
       </div>
     )
   }

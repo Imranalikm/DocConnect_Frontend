@@ -1,63 +1,110 @@
-.add-emr-main{
+.add-emr-main {
     width: 100vw;
     min-height: 100vh;
     position: absolute;
     top: 0px;
-    left:0px;
+    left: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba(0, 0, 0, 0.123);
     z-index: 1500;
-
 }
-.add-emr-container{
-    background-color: #fff;
+
+.add-emr-container {
+    background: linear-gradient(135deg, #f6a5c0, #fee8d6);  /* Gradient background */
     width: 1200px;
     max-width: 95%;
     min-height: 50vh;
     border-radius: 20px;
-    box-shadow: var(--defaultShadow);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);  /* Box shadow for a subtle effect */
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 20px;
     animation: startAnime .25s;
-
+    overflow-y: auto;
+    max-height: 90vh;
 }
-.add-emr-row.head{
+
+.add-emr-row.head {
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-.add-emr-row{
+
+.add-emr-row {
     display: flex;
 }
 
-.add-emr-row.header{
+.add-emr-row.header {
     display: flex;
     gap: 20px;
     justify-content: space-between;
 }
-.emr-header-item{
+
+.emr-header-item {
     display: flex;
     gap: 10px;
     align-items: center;
     width: 100%;
 }
 
-.add-emr-row.btn{
+.add-emr-row.btn {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
 }
 
+/* Styles for buttons */
+.add-emr-row.btn button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.add-emr-row.btn button.btn-outline-dark {
+    background-color: transparent;
+    color: #343a40;
+    border: 2px solid #343a40;
+}
+
+.add-emr-row.btn button.btn-dark {
+    background-color: #343a40;
+    color: #fff;
+}
+
+/* Styles for heading */
+.add-emr-row.head h4 {
+    color: #343a40;
+    text-align: center;
+}
+
+/* Styles for input fields */
+/* Styles for input fields */
+.add-emr-row.header input {
+    background-color: #f3f4f6;
+    border: none;
+    border-radius: 8px;
+    padding-top: 20px;
+    margin-top: 5px; /* Add margin at the top to increase the space between label and input */
+}
+
+/* Styles for labels */
+.add-emr-row.header .emr-header-item label {
+    color: #343a40;
+    margin-bottom: 5px; /* Add margin at the bottom to increase the space between label and input */
+}
+
+
 @keyframes startAnime {
-    from{
+    from {
         opacity: 0%;
         transform: scale(0.8);
     }
-    to{
+    to {
         opacity: 100%;
         transform: scale(1);
     }

@@ -18,6 +18,7 @@ function BookNow({ daysAvailable, doctor, setShowBookNow, refresh, setRefresh}) 
     const [times, setTimes] = useState([])
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
+    const [online,setOnline] =useState(false)
     
     const navigate = useNavigate()
 
@@ -66,6 +67,7 @@ function BookNow({ daysAvailable, doctor, setShowBookNow, refresh, setRefresh}) 
                       doctorId: doctor._id,
                       hospitalId: doctor.hospitalId,
                       fees: doctor.fees,
+                      online
                     });
           
                     if (data.err) {
@@ -177,6 +179,35 @@ function BookNow({ daysAvailable, doctor, setShowBookNow, refresh, setRefresh}) 
                     <div className="booking-row-days">
                         ₹{doctor.fees}
                     </div>
+                    <div className="booking-row">
+        <div className="booking-row-head">Consultation Mode</div>
+        <div className="booking-row-days">
+          <div className="booking-row-day">
+            <input
+              type="radio"
+              id="offlineOption"
+              name="mode"
+              value="offline"
+              checked={!online}
+              onChange={() => setOnline(false)}
+            />
+            <label htmlFor="offlineOption">Offline</label>
+          </div>
+          <div className="booking-row-day">
+            <input
+              type="radio"
+              id="onlineOption"
+              name="mode"
+              value="online"
+              checked={online}
+              onChange={() => setOnline(true)}
+            />
+            <label htmlFor="onlineOption">Online</label>
+          </div>
+        </div>
+      </div>
+        
+             
 
                 </div>
                 {

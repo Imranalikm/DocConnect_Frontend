@@ -1,4 +1,3 @@
-import { Button, Chip } from '@mui/material';
 import axiosInstance from '../../axios/axiosInstance'
 import React, { useEffect, useState } from 'react'
 import { Container, Dropdown, Row, Table } from 'react-bootstrap';
@@ -8,7 +7,7 @@ import DoctorHeader from '../DoctorHeader/DoctorHeader';
 import DoctorSideBar from '../DoctorSidebar/DoctorSidebar';
 import notFoundImg from '../../assets/images/no-result.jpg'
 import formatDate from '../../helpers/dateFormat'
-
+import { FaVideo } from "react-icons/fa6";
 
 function DoctorHome() {
     const [bookingList, setBookingList] = useState([])
@@ -46,7 +45,7 @@ function DoctorHome() {
                                 bookingList[0] ?
 
                                     bookingList.map((item, index) => {
-                                        return <div className="user-booking-item" key={index} onClick={() => showEmr(item)}>
+                                        return <div className="user-booking-item" key={index} >
                                             <div className="ub-dr-desc">
                                                 <div className="ub-dr-desc-item">
                                                     <b>{item.patientName}</b>
@@ -63,10 +62,11 @@ function DoctorHome() {
                                                         <p> {item.token}</p>
                                                     </div>
                                                 </div>
-                                                <div className="booking-status d-flex flex-wrap" style={{gap:"10px", height:"100%"}}>
-                                                    <Chip label={item.status} color="secondary" variant="outlined" />
-                                                    <Button variant='contained' className='bg-dark'>Edit EMR</Button>
-                                                </div>
+                                                <div className="booking-status d-flex flex-wrap " style={{gap:"10px", height:"100%"}}>
+                                                    <h6 className="btn" style={{borderColor:'e4c1f9',borderRadius:'20px',color:'ffafcc',backgroundColor:'#e4c1f9'}}>{item.status}</h6>
+                                                   <h6 className='btn' style={{borderColor:'black',borderRadius:'20px',color:'cdb4db'}} onClick={() => showEmr(item)}> EMR </h6> 
+                                                    { item.online && item.status !== "completed" && <h6 className='btn d-flex align-items-md-center' style={{borderColor:'black',borderRadius:'20px',color:'cdb4db'}}> <FaVideo style={{color:'red'}}/></h6>}
+                                                </div> 
                                             </div>
                                         </div>
                                     })

@@ -32,7 +32,7 @@ export default function AdminRoutes() {
             <Route path='/hospitals/requests' element={<HospitalrequestPage />} />
             <Route path='/hospitals' element={<AdminHospitalPage />} />
             <Route path='/complaints' element={<AdminComplaintPage />} />
-            
+            <Route path='/refunds' element={<AdminRefundPage />} />
            
         </>
         </Route>

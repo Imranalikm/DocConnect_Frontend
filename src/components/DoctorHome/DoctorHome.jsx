@@ -1,14 +1,13 @@
 import axiosInstance from "../../axios/axiosInstance";
 import React, { useEffect, useState } from "react";
-import { Container, Dropdown, Row, Table } from "react-bootstrap";
-import { RiMore2Fill } from "react-icons/ri";
+import { Container, Row } from "react-bootstrap";
+import { FaVideo } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import AddEMR from "../Modals/AddEMR/AddEMR";
 import DoctorHeader from "../DoctorHeader/DoctorHeader";
 import DoctorSideBar from "../DoctorSidebar/DoctorSidebar";
 import notFoundImg from "../../assets/images/no-result.jpg";
 import formatDate from "../../helpers/dateFormat";
-import { FaVideo } from "react-icons/fa6";
-import { Link } from "react-router-dom";
 
 function DoctorHome() {
   const [bookingList, setBookingList] = useState([]);
@@ -41,12 +40,12 @@ function DoctorHome() {
         <DoctorSideBar page={"home"} />
         <div className="admin-container">
           <Container fluid>
-            <div className="user-booking-container">
+            <div className="user-booking-container" stye>
               <h4 className="">Todays Booking</h4>
               {bookingList[0] ? (
-                bookingList.map((item, index) => {
-                  return (
-                    <div className="user-booking-item" key={index}>
+                <Row xs={1} md={2} lg={2} className="mx-md-3" style={{backgroundColor:'#f9fafb'}}>
+                  {bookingList.map((item, index) => (
+                    <div className="user-booking-item" key={index} >
                       <div className="ub-dr-desc">
                         <div className="ub-dr-desc-item">
                           <b>{item.patientName}</b>
@@ -67,51 +66,60 @@ function DoctorHome() {
                           </div>
                         </div>
                         <div
-                          className="booking-status d-flex flex-wrap "
+                          className="booking-status d-block flex-wrap "
                           style={{ gap: "10px", height: "100%" }}
                         >
-                          <h6
-                            className="btn"
-                            style={{
-                              borderColor: "e4c1f9",
-                              borderRadius: "20px",
-                              color: "ffafcc",
-                              backgroundColor: "#e4c1f9",
-                            }}
-                          >
-                            {item.status}
-                          </h6>
-                          <h6
-                            className="btn"
-                            style={{
-                              borderColor: "black",
-                              borderRadius: "20px",
-                              color: "cdb4db",
-                            }}
-                            onClick={() => showEmr(item)}
-                          >
-                            {" "}
-                            EMR{" "}
-                          </h6>
+                          <div>
+                            <h6
+                              className="btn "
+                              style={{
+                                borderColor: "e4c1f9",
+                                borderRadius: "20px",
+                                color: "ffafcc",
+                                backgroundColor: "#e4c1f9",
+                                // Added margin bottom
+                              }}
+                            >
+                              {item.status}
+                            </h6>
+                          </div>
+                          <div>
+                            <h6
+                              className="btn"
+                              style={{
+                                borderColor: "black",
+                                borderRadius: "20px",
+                                color: "cdb4db",
+                                 // Added margin bottom
+                              }}
+                              onClick={() => showEmr(item)}
+                            >
+                             { item.status == "completed" ? "SHOW EMR" : "ADD EMR"} 
+                            </h6>
+                          </div>
                           {item.online && item.status !== "completed" && (
-                            <Link
-                            to={`/account/doctor/videocall/${roomID}/${item.userId.email}`}
-                            className="btn d-flex align-items-md-center"
-                            style={{
-                              borderColor: "black",
-                              borderRadius: "20px",
-                              color: "cdb4db",
-                            }}
-                          >
-                            <FaVideo style={{ color: "red" }} />
-                          </Link>
-                          
+                            <div>
+                              <Link
+                                to={`/account/doctor/videocall/${roomID}/${item.userId.email}`}
+                                className="btn d-flex align-items-md-center justify-content-center"
+                                style={{
+                                  borderColor: "black",
+                                  borderRadius: "20px",
+                                  color: "white",
+                                  paddingTop:'11px',
+                                  paddingBottom:'11px',
+                                  backgroundColor:'#f7b801'
+                                }}
+                              >
+                               Consult  <FaVideo style={{ color: "white" ,}} />
+                              </Link>
+                            </div>
                           )}
                         </div>
                       </div>
                     </div>
-                  );
-                })
+                  ))}
+                </Row>
               ) : (
                 <Row className="d-flex justify-content-center flex-column align-items-center">
                   <img

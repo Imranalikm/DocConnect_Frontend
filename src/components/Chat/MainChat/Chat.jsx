@@ -74,7 +74,7 @@ export default function Chat({ }) {
       setReceivedMessage(data);
     }
     );
-  }, []);
+  }, [socket]);
 
   return (
   <>

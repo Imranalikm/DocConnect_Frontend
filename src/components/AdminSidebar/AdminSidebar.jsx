@@ -62,6 +62,30 @@ function AdminSidebar({page, clicked}) {
               </div>
             </li>
             </Link>
+            <Link to="/account/admin/refunds">
+
+            <li className={`admin-sideitems ${page=="refund" && 'active'}`}>
+
+              
+              <div className="admin-sideItem">
+
+                <RiRefundLine className='icon' />
+                <span>Refunds</span>
+              </div>
+            </li>
+            </Link>
+            <Link to="/account/admin/complaints">
+
+            <li className={`admin-sideitems ${page=="complaints" && 'active'}`}>
+
+              
+              <div className="admin-sideItem">
+
+                <RiFileWarningLine className='icon' />
+                <span>Complaints</span>
+              </div>
+            </li>
+            </Link>
             
 
           </ul>

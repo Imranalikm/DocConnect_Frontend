@@ -8,6 +8,8 @@ import AdminUsersPage from '../pages/admin/AdminUsersPage';
 import HospitalrequestPage from '../pages/admin/AdminHospitalRequestPage';
 import ProtectedAdminRoutes from '../utils/ProtectedAdminRoutes';
 import AdminHospitalPage from '../pages/admin/AdminHospitalPage';
+import AdminComplaintPage from '../pages/admin/AdminComplaintPage';
+
 export default function AdminRoutes() {
     
     const { refresh, admin} = useSelector((state) =>state);
@@ -29,6 +31,8 @@ export default function AdminRoutes() {
             <Route path='/users' element={<AdminUsersPage />} />
             <Route path='/hospitals/requests' element={<HospitalrequestPage />} />
             <Route path='/hospitals' element={<AdminHospitalPage />} />
+            <Route path='/complaints' element={<AdminComplaintPage />} />
+            
            
         </>
         </Route>

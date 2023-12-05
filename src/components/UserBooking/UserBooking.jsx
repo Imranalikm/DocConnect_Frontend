@@ -150,12 +150,17 @@ export default function UserBooking() {
                 )}
               </>
             )}
-            {item.status !== 'upcoming' && (
+            {item.status !== 'upcoming' && item.status !== 'refund processing' && (
               <>
-                <Chip label={item.status} color={item.status === 'consulted' ? "primary" : "secondary"} variant="outlined" />
+                <Chip label={item.status} color={item.status === 'completed' ? "primary" : "secondary"}  />
                 {item.status === 'completed' && <button className='btn btn-dark'>View EMR</button>}
               </>
             )}
+            {
+              item.status === 'refund processing' && (
+                <Chip label={item.status} color={"warning"} />
+              )
+            }
           </div>
         </div>
       </div>

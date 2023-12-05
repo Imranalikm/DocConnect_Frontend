@@ -3,8 +3,8 @@ import {MainContainer,ChatContainer,MessageList,Message,MessageInput,TypingIndic
 
 import { useState } from 'react'
 import UserHeader from "../UserHeader/UserHeader"
-
-const API_KEY ="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"
+import docbot from "../../assets/images/docbt.jpg"
+const API_KEY ="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 "
 
 const UserDocBot = () => {
     const [typing,setTyping] =useState()
@@ -14,17 +14,24 @@ const UserDocBot = () => {
   }])
 
   const handleSend =async (message)=>{
-     const newMessage ={
-      message:message,
-      sender:'user',
-      direction:"outgoing"
-     }
-
-     const newMessages=[...messages,newMessage] 
-     setMessages(newMessages);
-     setTyping(true);
-     await processMessageToChatGPT(newMessages)
-     }
+    const newMessage = {
+      message: message,
+      sender: 'user',
+      direction: 'outgoing',
+    };
+  
+    const newMessages = [...messages, newMessage];
+    setMessages(newMessages);
+    setTyping(true);
+  
+    try {
+      await processMessageToChatGPT(newMessages);
+    } catch (error) {
+      console.error('Error processing message to ChatGPT:', error);
+    } finally {
+      setTyping(false);
+    }
+  }
 
      async function processMessageToChatGPT(chatMessages) {
       let apiMessages = chatMessages.map((messageObject) => {
@@ -62,7 +69,7 @@ const UserDocBot = () => {
           console.log(data);
           console.log(data.choices[0].message.content);
           setMessages([...chatMessages,{
-            message:data.choices[0].message.content,
+            message:data?.choices[0]?.message?.content,
             sender:"chatGPT"
           }])
         });
@@ -73,7 +80,7 @@ const UserDocBot = () => {
   return (
     <>
        <UserHeader/>
-       <div className="Docbot" style={{ display: 'flex', justifyContent: "center", alignContent: "center", height:'100%',width:'100%',background:'url("https://img.freepik.com/premium-photo/hospital-hallway-with-blue-floor-plant-corner_937837-5.jpg?w=900")' }}>
+       <div className="Docbot" style={{ display: 'flex', justifyContent: "center", alignContent: "center", height:'100%',width:'100%',background:`url(${docbot})`,backgroundSize:'contain' }}>
 
         <div style={{position:'relative',height:'550px',width:"600px",marginTop:"25px",borderRadius:'10px',marginBottom:'15px'}}>
                 <MainContainer style={{borderRadius:'15px'}} >

@@ -6,15 +6,15 @@ const instance = axios.create({
 });
 
 
-instance.interceptors.request.use(
-    (config) => {
+// instance.interceptors.request.use(
+//     (config) => {
      
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
+//       return config;
+//     },
+//     (error) => {
+//       return Promise.reject(error);
+//     }
+//   );
 
 // instance.interceptors.response.use( response => response ,
 //     error => Promise.reject(error.response.data)

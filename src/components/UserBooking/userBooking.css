@@ -5,7 +5,10 @@
     gap: 10px;
     padding-top: 20px;
 }
-
+.cancel-chip{
+    background-color: red;
+    color: white;
+}
 .user-booking-item {
     background-color: #fff;
     display: flex;
@@ -14,6 +17,7 @@
     border-radius: 10px;
     box-shadow: var(--defaultShadow);
     padding: 10px;
+    
 }
 
 .ub-dr-profile img {

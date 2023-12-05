@@ -13,6 +13,8 @@ function UserSearch() {
     const [name, setName] = useState("")
     const [searchType, setSearchType] = useState("doctor")
     const [doctorList, setDoctorList] = useState([])
+    const [doctorRating, setDoctorRating] = useState({})
+    const [hospitalRating, setHospitalRating] = useState({})
     const [hospitalList, setHospitalList] = useState([])
     const [departmentList, setDepartmentList] = useState([])
     const [department, setDepartment] = useState("")
@@ -23,14 +25,14 @@ function UserSearch() {
             let { data } = await axiosInstance.get("/user/hospitals?name=" + name + "&department=" + department);
             
             if (!data.err) {
-                
+                setHospitalRating(data.rating)
                 setHospitalList(data.hospitals)
             }
         } else {
             let { data } = await axiosInstance.get("/user/doctors?name=" + name + "&department=" + department + "&sort=" + sort);
             console.log(data);
             if (!data.err) {
-               
+                setDoctorRating(data.rating)
                 setDoctorList(data.doctors)
             }
         }
@@ -104,13 +106,13 @@ function UserSearch() {
                 {
                     searchType === "doctor" &&
                     <Row className='mt-5' style={{borderRadius:'25px'}}>
-                        <DoctorList list={doctorList}  />
+                        <DoctorList list={doctorList}  rating={doctorRating} />
                     </Row>
                 }
                 {
                     searchType === 'hospital' &&
                     <Row className='mt-5' style={{borderRadius:'25px'}}>
-                        <HospitalList list={hospitalList}  />
+                        <HospitalList list={hospitalList} rating={hospitalRating} />
                     </Row>
                 }
             </Container>

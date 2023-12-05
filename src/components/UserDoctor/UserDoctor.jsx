@@ -167,7 +167,7 @@ if (!scheduleData.err) {
 
                                 </div>
                                 <div className="dr-profile-sec-row button">
-                                    <button >Chat</button>
+                                    <button onClick={()=>navigate("/chat?id="+doctor._id)}  >Chat</button>
                                     <button onClick={() => setShowBookNow(true)} disabled={!daysAvailable[0]} >Book Now</button>
                                 </div>
                             </div>

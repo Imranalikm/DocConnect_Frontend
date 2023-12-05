@@ -69,6 +69,7 @@
     color: #ffffff;
     border-radius: .5rem;
     padding: 8px;
+    font-size: medium;
 }
 
 .booking-row-head {
@@ -101,11 +102,15 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
+    background: linear-gradient(90deg, hsla(339, 100%, 55%, 1) 0%, hsla(197, 100%, 64%, 1) 100%);
+    color: white;
 }
 
 .bttn button:first-child {
     margin-right: 10px;
+    background-color: black;
 }
+
 
 .bttn button:disabled {
     background-color: #ccc;

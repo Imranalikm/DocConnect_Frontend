@@ -26,6 +26,8 @@ export default function DoctorSchedule() {
   };
 
   const doctorId = useSelector((state) => state.doctor.details._id);
+  
+ 
   const [scheduleState, scheduleDispatch] = useReducer(scheduleReducer, scheduleInitialState);
 
   useEffect(() => {

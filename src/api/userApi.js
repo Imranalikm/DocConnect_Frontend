@@ -68,3 +68,51 @@ export async function getUserEMR(bookingId) {
   }
   return data;
 }
+
+export async function addComplaint(complaintAgainst, type, description){
+  const {data} = await axiosInstance.post("/user/complaint", {complaintAgainst, type, description});
+  if(data.err){
+      Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: data.message,
+        })
+  }
+  return data
+}
+
+export async function getAllDoctors(id){
+  const {data} = await axiosInstance.get("/user/doctors");
+  if(data.err){
+      Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: data.message,
+        })
+  }
+  return data
+}
+
+export async function getAllHospitals(id){
+  const {data} = await axiosInstance.get("/user/hospitals");
+  if(data.err){
+      Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: data.message,
+        })
+  }
+  return data
+}
+
+export async function cancelBooking(bookingId){
+  const {data} = await axiosInstance.patch("/user/booking/cancel", {bookingId});
+  if(data.err){
+      Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: data.message,
+        })
+  }
+  return data
+}

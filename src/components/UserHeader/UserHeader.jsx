@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from "./../../../src/assets/images/logoheader.jpg"
 import Swal from 'sweetalert2'
+import AddComplaint from '../Modals/AddComplaint/AddComplaint'
 
 function UserHeader({fullWidth}) {
   const [open, setOpen] = useState(false)
@@ -39,15 +40,15 @@ function UserHeader({fullWidth}) {
         <div className="user-header ">
           <div className="user-header-item">
 
-            <Link to="/" className='link'>
+            <Link to="/home" className='link'>
             <img src={logo} alt="" style={{ width: '180px', height: 'auto', overflow:'hidden' }} />
 
               
             </Link>
           </div>
           <div className="user-header-item">
-           <Link to="/" className='link'><span>Home</span></Link> 
-           <Link to="/" className='link'><span>Chat</span></Link> 
+           <Link to="/home  " className='link'><span>Home</span></Link> 
+           <Link to="/chat" className='link'><span>Chat</span></Link> 
            <Link to="/profile" className='link'><span>Bookings</span></Link> 
            <Link to="/docbot" className='link'><span style={{background:"linear-gradient(90deg, rgba(58,149,180,1) 0%, rgba(198,29,253,1) 51%, rgba(252,69,168,1) 100%)",padding:'2px 10px',borderRadius:'10px',color:'white'}}>Dr.Bot</span></Link> 
             <Button
@@ -70,7 +71,7 @@ function UserHeader({fullWidth}) {
               }}
             >
               <MenuItem onClick={() => navigate("/profile")} >{user.name}'s Profile</MenuItem>
-              
+              <MenuItem onClick={() => { setShowModal(true) }} >Register compliant</MenuItem>
               <MenuItem onClick={handleLogout} >Logout</MenuItem>
             </Menu>
             
@@ -78,7 +79,10 @@ function UserHeader({fullWidth}) {
 
         </div>
       </Container>
-      
+      {
+        showModal &&
+        <AddComplaint setShowModal={setShowModal} />
+      }
     </div>
 
   )

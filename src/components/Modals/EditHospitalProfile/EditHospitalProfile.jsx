@@ -41,7 +41,7 @@ export default function EditHospitalProfile({ setShowModal, setRefresh, refresh,
         setFinalImage(reader.result)
       }
     }
-
+    
     async function handleSubmit(e) {
         e.preventDefault();
         setLoading({ ...loading, submit: true })

@@ -46,7 +46,8 @@ export default function AdminUsers() {
       confirmButtonText: `Yes, ${action}!`
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const { data } = await axiosInstance.get(`/admin/user/${isBlocked ? 'un' : ''}block`, { id });
+        const { data } = await axiosInstance.patch(`/admin/user/${isBlocked ? 'un' : ''}block`, { id });
+        console.log(data);
         setRefresh(!refresh);
       }
     });

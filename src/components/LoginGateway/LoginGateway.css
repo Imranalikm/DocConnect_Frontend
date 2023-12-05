@@ -1,0 +1,70 @@
+.login-gateway {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .user-type,
+  .hospital-type,
+  .doctor-type {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+  
+  .user-type-card,
+  .hospital-type-card,
+  .doctor-type-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    animation: slideUp 0.5s ease-out; /* Animation added */
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .user-type-card:hover,
+  .hospital-type-card:hover,
+  .doctor-type-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .imagegate {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+  }
+  
+ 
+  
+  .user-link,
+  .hospital-link,
+  .doctor-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .gateway {
+    display: flex;
+  }
+  
+  @media (max-width: 768px) {
+    .gateway {
+      display: block;
+    }
+  }
+  

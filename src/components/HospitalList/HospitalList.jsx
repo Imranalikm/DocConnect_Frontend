@@ -7,7 +7,7 @@ import noResultImg from '../../assets/images/no-result.jpg'
 
 import './hospitallist.css'
 
-function HospitalList({ list, title }) {
+function HospitalList({ list, title,rating}) {
     return (
         <div>
             <Row className='d-flex justify-content-center'>
@@ -31,7 +31,7 @@ function HospitalList({ list, title }) {
                                     </div>
                                     <div className="hs-container-profile-desc">
                                         <h5>{item.name}</h5>
-                                        
+                                        <Rating name="size-small" defaultValue={rating[item._id]} readOnly size="small" />
                                         <div className="desc">
                                             <span>{item.address}</span>
                                             <span>{item.place}</span>

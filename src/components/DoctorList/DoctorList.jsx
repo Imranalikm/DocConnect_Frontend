@@ -8,7 +8,7 @@ import './doctorlist.css'
 
 
 
-function DoctorList({ list, title }) {
+function DoctorList({ list, title,rating }) {
 
     const departmentColors = {
         'Cardiology': 'lightblue',
@@ -37,13 +37,13 @@ function DoctorList({ list, title }) {
 
                                     </div>
                                     <div className="dr-container-profile-desc">
-                                        <h5>{item.name}</h5>
-                                        
+                                        <h5 >{item.name}</h5>
+                                        <Rating name="size-small" readOnly defaultValue={rating?.[item._id]} size="small" />
                                         <div className="desc">
-                                            
+                                        
                                             <span>{item.department.name}</span>
                                             <span>{item.hospitalId.name}</span>
-                                            <b style={{ backgroundColor: departmentColors[item.department.name] }} >₹{item.fees}</b>
+                                            <b style={{ backgroundColor: departmentColors[item.department.name] ,marginTop:'5px'}} >₹{item.fees}</b>
                                         </div>
                                     </div>
                                 </div>

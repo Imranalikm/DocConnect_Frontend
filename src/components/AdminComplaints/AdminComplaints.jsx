@@ -8,7 +8,7 @@ import AdminSidebar from '../AdminSidebar/AdminSidebar';
 import Swal from 'sweetalert2'
 import { Backdrop, CircularProgress } from '@mui/material';
 import { getAdminComplaints } from '../../api/adminApi';
-import ViewComplaint from '../../Modal/ViewComplaint/ViewComplaint';
+import ViewComplaint from '../Modals/ViewComplaint/ViewComplaint';
 
 export default function AdminComplaints() {
   const [refresh, setRefresh] = useState(false)

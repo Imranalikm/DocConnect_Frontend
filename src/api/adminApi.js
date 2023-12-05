@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 export async function getAdminComplaints(){
 
     try{
-        const {data} =await axios.get("/admin/complaints");
+        const {data} =await axiosInstance.get("/admin/complaints");
         return data
     }catch(error){
         toast.error(error.response.data.message, {

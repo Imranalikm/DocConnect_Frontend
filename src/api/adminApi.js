@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
-export async function getadminAdminComplaints(){
+export async function getAdminComplaints(){
 
     try{
         const {data} =await axios.get("/admin/complaints");

@@ -10,7 +10,7 @@ import { io } from "socket.io-client";
 import DoctorSidebar from '../../DoctorSidebar/DoctorSidebar'
 import { findDoctorChat, getDoctorChats } from '../../../api/doctorChatRequestApi'
 
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect('https://docconnect.imranalikm.online');
 
 
 

@@ -4,7 +4,6 @@ import HospitalHeader from '../HospitalHeader/HospitalHeader';
 import HospitalSidebar from '../HospitalSidebar/HospitalSidebar';
 import './hospitalschedule.css';
 import dayjs from 'dayjs';
-import { DemoItem } from '@mui/x-date-pickers/internals/demo';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -13,14 +12,14 @@ import { TextField } from '@mui/material';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { useNavigate, useParams } from 'react-router-dom';
 import axiosInstance from '../../axios/axiosInstance';
-import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { MdAddComment } from 'react-icons/md';
 
 export default function HospitalSchedule() {
   const [clicked, setCLicked] = useState(false);
   const navigate = useNavigate();
-  const scheduleInititalState = {
+  const scheduleInitialState = {
     mon: [],
     tue: [],
     wed: [],
@@ -30,20 +29,51 @@ export default function HospitalSchedule() {
     sun: [],
   };
   const { id: doctorId } = useParams();
+
   const handleClick = () => {
     setCLicked(!clicked);
   };
 
+  const validateRow = (day) => {
+    const { startDate, endDate, slot } = dayState[day];
+
+    const isStartTimeEqualEndTime = startDate && endDate && dayjs(startDate).isSame(endDate);
+    const isStartTimeGreaterThanEndTime = startDate && endDate && dayjs(startDate).isAfter(endDate);
+    const isTimeDifferenceLessThan20Minutes = startDate && endDate && dayjs(endDate).diff(startDate, 'minutes') < 20;
+    const isNightSchedule = startDate && endDate && dayjs(startDate).hour() >= 0 && dayjs(endDate).hour() <= 6;
+
+    const isInvalidOriginal = !startDate || !endDate || slot <= 0;
+
+    if (isInvalidOriginal) {
+      return 'Please fill in all fields and ensure slot is greater than 0.';
+    } else if (isStartTimeEqualEndTime) {
+      return 'Start time cannot be equal to end time.';
+    } else if (isStartTimeGreaterThanEndTime) {
+      return 'Start time cannot be greater than end time.';
+    } else if (isTimeDifferenceLessThan20Minutes) {
+      return 'Time difference must be at least 20 minutes.';
+    } else if (isNightSchedule) {
+      return 'Night schedule (12:00 AM to 6:00 AM) is not allowed.';
+    }
+
+    return '';
+  };
+
   useEffect(() => {
     (async function () {
-      const { data } = await axiosInstance.get('/hospital/doctor/schedule/' + doctorId);
-      if (!data.err) {
-        scheduleDispatch({ type: 'all', payload: data.schedule });
+      try {
+        const { data } = await axiosInstance.get('/hospital/doctor/schedule/' + doctorId);
+        if (!data.err) {
+          scheduleDispatch({ type: 'all', payload: data.schedule });
+        }
+      } catch (error) {
+        console.error('Error fetching schedule:', error);
       }
     })();
   }, []);
 
-  const [scheduleState, scheduleDispatch] = useReducer(scheduleReducer, scheduleInititalState);
+  const [scheduleState, scheduleDispatch] = useReducer(scheduleReducer, scheduleInitialState);
+
   const initialDayState = {
     startDate: null,
     endDate: null,
@@ -60,17 +90,18 @@ export default function HospitalSchedule() {
     sun: { ...initialDayState },
   });
 
-  const validateRow = (day) => {
-    const { startDate, endDate, slot } = dayState[day];
-    return !startDate || !endDate || slot <= 0;
-  };
-
   const addTime = (day) => {
-    scheduleDispatch({ type: day, payload: dayState[day] });
-    setDayState((prevState) => ({
-      ...prevState,
-      [day]: { ...initialDayState },
-    }));
+    const validationMessage = validateRow(day);
+
+    if (validationMessage) {
+      toast.error(validationMessage);
+    } else {
+      scheduleDispatch({ type: day, payload: dayState[day] });
+      setDayState((prevState) => ({
+        ...prevState,
+        [day]: { ...initialDayState },
+      }));
+    }
   };
 
   const removeTime = (day, index) => {
@@ -83,7 +114,7 @@ export default function HospitalSchedule() {
         doctorId,
         ...scheduleState,
       });
-  
+
       if (data.err) {
         toast.error('Failed! Something went wrong. Please try again.');
       } else {
@@ -121,7 +152,7 @@ export default function HospitalSchedule() {
                           <div className="time-input">
                             <TextField
                               id="outlined-basic"
-                              size="small"
+                              size="large"
                               disabled
                               type="number"
                               value={item.slot}
@@ -172,8 +203,8 @@ export default function HospitalSchedule() {
                             variant="outlined"
                           />
                         </div>
-                        <button disabled={validateRow(day)} className={'button'} onClick={() => addTime(day)}>
-                          Add Time
+                        <button className={'button'} onClick={() => addTime(day)}>
+                          <MdAddComment /> Add Time
                         </button>
                       </div>
                     </div>

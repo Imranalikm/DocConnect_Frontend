@@ -111,12 +111,15 @@
     gap: 10px;
 }
 .doctor-time-list .time-box{
-    border: 1px solid var(--mainColor);
+    
     box-shadow: var(--defaultShadow);
-    padding: 8px;
     border-radius: 10px;
     color:white;
-    background-color: black;
+    font-weight:400;
+    font-size:medium;
+    padding-left: 8px;
+    padding-right:8px;
+    background-color: rgb(0, 0, 0);
 }
 
 

@@ -43,12 +43,13 @@ function DoctorList({ list, title,rating }) {
                                         
                                             <span>{item.department.name}</span>
                                             <span>{item.hospitalId.name}</span>
-                                            <b style={{ backgroundColor: departmentColors[item.department.name] ,marginTop:'5px'}} >₹{item.fees}</b>
+                                            <b style={{ backgroundColor: "red" ,marginTop:'5px'}} >₹{item.fees}</b>
                                         </div>
                                     </div>
                                 </div>
                             </Link>
                         </Col>
+
                     })
                     :
                     <div className='no-result-container'>

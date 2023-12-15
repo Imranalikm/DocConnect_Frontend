@@ -12,6 +12,7 @@
 .user-booking-item {
     background-color: #fff;
     display: flex;
+    
     align-items: center;
     gap: 10px;
     border-radius: 10px;
@@ -87,3 +88,4 @@
     border-radius: .75rem;
     margin-top:8px;
 }
+

@@ -4,7 +4,7 @@ import {MainContainer,ChatContainer,MessageList,Message,MessageInput,TypingIndic
 import { useState } from 'react'
 import UserHeader from "../UserHeader/UserHeader"
 import docbot from "../../assets/images/docbt.jpg"
-const API_KEY ="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 "
+const API_KEY ="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 "
 
 const UserDocBot = () => {
     const [typing,setTyping] =useState()
@@ -46,7 +46,7 @@ const UserDocBot = () => {
     
       const systemMessage = {
         role: "system",
-        content: "Answer for medical or health related queries only!.answer should be short",
+        content: "Answer for medical or health related queries only!.answer should be short.Dont answer for other questions",
       };
     
       const apiRequestBody = {

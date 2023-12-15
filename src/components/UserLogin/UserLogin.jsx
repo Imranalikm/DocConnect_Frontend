@@ -143,12 +143,12 @@ function UserLogin() {
                                             Demo Login
                                     </Button> */}
                   </div>
-                  <div className="login-row">OR</div>
+                  {/* <div className="login-row">OR</div> */}
                   <div className="login-row google-btn">
-                    <Button variant="contained" onClick={handleGoogleLogin}>
+                    {/* <Button variant="contained" onClick={handleGoogleLogin}>
                                             <FcGoogle className='icon' />
                                             Login with Google
-                                    </Button>
+                                    </Button> */}
                   </div>
                   <div className="login-row mt-3">
                     <Link to="/signup" className="link">

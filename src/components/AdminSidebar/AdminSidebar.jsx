@@ -1,7 +1,7 @@
 
 import React from 'react'
 import './Sidebar.css'
-import { RiFileWarningLine, RiHome2Line, RiHospitalLine, RiRefundLine, RiUserLine } from "react-icons/ri";
+import { RiFileWarningLine, RiHome2Line, RiHospitalLine, RiRefundLine,RiBankLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 import {BiSolidDashboard} from 'react-icons/bi'
 import {BsHospital} from 'react-icons/bs'
@@ -83,6 +83,18 @@ function AdminSidebar({page, clicked}) {
 
                 <RiFileWarningLine className='icon' />
                 <span>Complaints</span>
+              </div>
+            </li>
+            </Link>
+            <Link to="/account/admin/withdrawals">
+
+            <li className={`admin-sideitems ${page=="withdrawals" && 'active'}`}>
+
+              
+              <div className="admin-sideItem">
+
+                <RiBankLine className='icon' />
+                <span>Withdrawals</span>
               </div>
             </li>
             </Link>

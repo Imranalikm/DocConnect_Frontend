@@ -23,8 +23,10 @@ export default function DoctorProfile() {
         (
             async function(){
                 const data =await getDoctorProfile();
+                console.log(data)
                 if(!data.err){
-                    setDoctor({...data.doctor})
+                    setDoctor({...data.doctor,reviews:data.reviews})
+                    
                 }
             }
 
@@ -57,7 +59,7 @@ export default function DoctorProfile() {
                                 <div className="dr-profile-sec sec-2">
                                     <div className="dr-profile-sec-row head">
                                         <h5>{doctor.name}</h5>
-                                        <p>{doctor.department && doctor.department.name.toUpperCase()} Department</p>
+                                        <p>{doctor.department && doctor.department.name} Department</p>
                                     </div>
 
                                     <div className="dr-profile-sec-row">

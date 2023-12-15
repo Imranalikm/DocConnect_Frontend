@@ -115,28 +115,14 @@ import {
               />
             </div>
             <div className="emr-header-item">
-              <FormControl
+            <TextField
+                id="filled-basic"
+                label="gender"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
                 variant="filled"
                 fullWidth
-              >
-                <InputLabel id="demo-simple-select-filled-label">
-                  Gender
-                </InputLabel>
-                <Select
-                  fullWidth
-                  labelId="demo-simple-select-filled-label"
-                  id="demo-simple-select-filled"
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                >
-                <MenuItem value="" >
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={"male"}>Male</MenuItem>
-                  <MenuItem value={"female"}>Female</MenuItem>
-                  <MenuItem value={"other"}>Other</MenuItem>
-                </Select>
-              </FormControl>
+              />
             </div>
             
           </div>

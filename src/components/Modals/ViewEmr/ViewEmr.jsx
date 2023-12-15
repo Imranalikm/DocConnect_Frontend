@@ -1,193 +1,197 @@
+import React, { useEffect, useState } from "react";
 import {
-    InputLabel,
-    MenuItem,
-    OutlinedInput,
-    Select,
-    FormControl,
-    TextField,
-  } from "@mui/material";
-import axiosInstance from "../../../axios/axiosInstance"
-  import React, { useEffect, useState } from "react";
-  import { getDoctorEMR } from "../../../api/doctorApi";
-  import "../AddEMR/AddEMR.css";
-import formatDate from "../../../helpers/dateFormat";
+  InputLabel,
+  MenuItem,
+  Select,
+  FormControl,
+  TextField,
+} from "@mui/material";
 import { jsPDF } from "jspdf";
-import autoTable from 'jspdf-autotable'
+import autoTable from "jspdf-autotable";
+import formatDate from "../../../helpers/dateFormat";
 import { getUserEMR } from "../../../api/userApi";
+import logo from "../../../assets/images/emrlogo.png";
+import { FaCloudDownloadAlt } from "react-icons/fa";
+import "./ViewEMR.css"; // Create a new CSS file for styling
 
-  
-  export default function ViewEmr({booking, setShowAddEmr}) {
-    const [gender, setGender] = useState("");
-    const [weight, setWeight] = useState("");
-    const [prescription, setPrescription] = useState("");
-    const [noData, setNoData]=useState(true)
-    const [data, setData]=useState({})
-  
-    const downloadReport=async ()=>{
-      if(data){
-        const doc = new jsPDF();
-        doc.setFontSize(13);
+export default function ViewEmr({ booking, setShowAddEmr }) {
+  const [gender, setGender] = useState("");
+  const [weight, setWeight] = useState("");
+  const [prescription, setPrescription] = useState("");
+  const [noData, setNoData] = useState(true);
+  const [data, setData] = useState({});
 
-        autoTable(doc, {
-            theme: 'grid',
-            head: [["Details", ""]],
-            body: [
-              ["Name", data?.patientName],
-              ["Doctor Name", data?.doctorId?.name],
-              ["Age", data?.age],
-              ["Gender", data?.gender],
-              ["Weight", data?.weight],
-              ["Date", formatDate(data?.date)],
-            ],
-            startY: 20
+  const downloadReport = async () => {
+    if (data) {
+      const doc = new jsPDF();
+      doc.setFontSize(18);
 
-        })
-        doc.autoTable({
-            theme: 'grid',
-            head: [['Prescription']],
-            body: [[data?.prescription]],
-            startY: doc.lastAutoTable.finalY + 10
-        })
+      doc.text("Medical Report", 70, 20);
 
-        doc.save("a4.pdf");  
-      }
+      autoTable(doc, {
+        theme: "striped",
+        head: [["Details", ""]],
+        body: [
+          ["Name", data?.patientName],
+          ["Doctor Name", data?.doctorId?.name],
+          ["Age", data?.age],
+          ["Gender", data?.gender],
+          ["Weight", data?.weight],
+          ["Date", formatDate(data?.date)],
+        ],
+        startY: 30,
+      });
 
+      doc.autoTable({
+        theme: "striped",
+        head: [["Prescription"]],
+        body: [[data?.prescription]],
+        startY: doc.lastAutoTable.finalY + 10,
+      });
+
+      doc.save("Prescription.pdf");
     }
-    useEffect(()=>{
-      (
-        async function(){
-          const data=await getUserEMR(booking._id);
-          if(!data.err && data.emr){
-            setData(data.emr)
-            setNoData(false)
-            setGender(data.emr.gender);
-            setWeight(data.emr.weight)
-            setPrescription(data.emr.prescription)
-          }
-        }
-      )()
-    },[booking])
-    return (
-      <div className="add-emr-main">
-        <div className="add-emr-container">
-          <div className="add-emr-row head">
-            <h4>Medical Report</h4>
-            
+  };
+
+  useEffect(() => {
+    (async function () {
+      const data = await getUserEMR(booking._id);
+      if (!data.err && data.emr) {
+        setData(data.emr);
+        setNoData(false);
+        setGender(data.emr.gender);
+        setWeight(data.emr.weight);
+        setPrescription(data.emr.prescription);
+      }
+    })();
+  }, [booking]);
+
+  return (
+    <div className="view-emr-main">
+      <div className="view-emr-container">
+        <div className="view-emr-header">
+          <img src={logo} alt="logo" className="emr-logo" />
+          <h4>Medical Report</h4>
+        </div>
+        <div className="view-emr-details">
+          <div className="emr-detail-item">
+            <TextField
+              label="Patient Name"
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              readOnly
+              value={booking.patientName}
+            />
           </div>
-          <div className="add-emr-row header mt-3">
-            <div className="emr-header-item">
-              <TextField
-                id="filled-basic"
-                label="Patient Name"
-                variant="filled"
-                fullWidth
-                readOnly
-                value={booking.patientName}
-              />
-            </div>
-            <div className="emr-header-item">
-              <TextField
-                id="filled-basic"
-                label="Age"
-                variant="filled"
-                fullWidth
-                readOnly
-                value={booking.age}
-              />
-            </div>
-            <div className="emr-header-item">
-              <TextField
-                id="filled-basic"
-                label="Date"
-                variant="filled"
-                fullWidth
-                readOnly
-                value={new Date(booking.date).toLocaleDateString()}
-              />
-            </div>
-            <div className="emr-header-item">
-              <TextField
-                id="filled-basic"
-                label="Time"
-                variant="filled"
-                fullWidth
-                readOnly
-                value={new Date(booking.time).toLocaleTimeString("en-US")}
-              />
-            </div>
+          <div className="emr-detail-item">
+            <TextField
+              label="Age"
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              readOnly
+              value={booking.age}
+            />
           </div>
-          <div className="add-emr-row header">
-            <div className="emr-header-item">
-              <TextField
-                id="filled-basic"
-                label="Doctor Name"
-                variant="filled"
+          <div className="emr-detail-item">
+            <TextField
+              label="Date"
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              readOnly
+              value={new Date(booking.date).toLocaleDateString()}
+            />
+          </div>
+          <div className="emr-detail-item">
+            <TextField
+              label="Time"
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              readOnly
+              value={new Date(booking.time).toLocaleTimeString("en-US")}
+            />
+          </div>
+          <div className="emr-detail-item">
+            <TextField
+              label="Doctor Name"
+              variant="outlined"
+              color="secondary"
+              fullWidth
+              readOnly
+              value={booking.doctorId?.name}
+            />
+          </div>
+          <div className="emr-detail-item">
+            <TextField
+              label="Weight"
+              variant="outlined"
+              color="secondary"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+              fullWidth
+              readOnly
+            />
+          </div>
+          <div className="emr-detail-item">
+            <FormControl variant="outlined" fullWidth>
+              <InputLabel id="demo-simple-select-filled-label">
+                Gender
+              </InputLabel>
+              <Select
                 fullWidth
+                labelId="demo-simple-select-filled-label"
+                id="demo-simple-select-filled"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
                 readOnly
-                value={booking.doctorId?.name}
-              />
-            </div>
-            <div className="emr-header-item">
-              <TextField
-                id="filled-basic"
-                label="Weight"
-                value={weight}
-                onChange={(e) => setWeight(e.target.value)}
-                variant="filled"
-                fullWidth
-                readOnly
-              />
-            </div>
-            <div className="emr-header-item">
-              <FormControl
-                variant="filled"
-                fullWidth
               >
-                <InputLabel id="demo-simple-select-filled-label">
-                  Gender
-                </InputLabel>
-                <Select
-                  fullWidth
-                  labelId="demo-simple-select-filled-label"
-                  id="demo-simple-select-filled"
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                  readOnly
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={"male"}>Male</MenuItem>
-                  <MenuItem value={"female"}>Female</MenuItem>
-                  <MenuItem value={"other"}>Other</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-            
-          </div>
-          <hr />
-          <div className="add-emr-row header">
-            <div className="emr-header-item">
-              <TextField
-                id="filled-multiline-static"
-                placeholder="Prescrptions"
-                multiline
-                maxRows={20}
-                minRows={15}
-                fullWidth
-                variant="filled"
-                value={prescription}
-                readOnly
-                onChange={(e)=>setPrescription(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="add-emr-row btn">
-            <button className="btn btn-outline-dark" onClick={()=>setShowAddEmr(false)}>Back</button>
-            <button className="btn btn-dark" disabled={noData} onClick={downloadReport}>Download</button>
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={"male"}>Male</MenuItem>
+                <MenuItem value={"female"}>Female</MenuItem>
+                <MenuItem value={"other"}>Other</MenuItem>
+              </Select>
+            </FormControl>
           </div>
         </div>
+        <hr />
+        <div className="view-emr-prescription">
+          <TextField
+            label="Prescriptions"
+            placeholder="Prescriptions"
+            multiline
+            maxRows={20}
+            minRows={15}
+            fullWidth
+            variant="outlined"
+            color="secondary"
+            value={prescription}
+            readOnly
+            onChange={(e) => setPrescription(e.target.value)}
+          />
+        </div>
+        <div className="view-emr-buttons">
+          <button
+            className="btn btn-outline-dark"
+            onClick={() => setShowAddEmr(false)}
+          >
+            Close
+          </button>
+          <button
+            className="btn btn-dark"
+            disabled={noData}
+            onClick={downloadReport}
+          >
+            Download 
+            
+            
+          </button>
+        </div>
       </div>
-    );
-  }
-  
+    </div>
+  );
+}

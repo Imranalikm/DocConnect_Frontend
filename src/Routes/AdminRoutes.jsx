@@ -9,7 +9,8 @@ import HospitalrequestPage from '../pages/admin/AdminHospitalRequestPage';
 import ProtectedAdminRoutes from '../utils/ProtectedAdminRoutes';
 import AdminHospitalPage from '../pages/admin/AdminHospitalPage';
 import AdminComplaintPage from '../pages/admin/AdminComplaintPage';
-
+import AdminRefundPage from '../pages/admin/AdminRefundPage';
+import AdminWithdrawalsPage from '../pages/admin/AdminWithdrawalsPage'
 export default function AdminRoutes() {
     
     const { refresh, admin} = useSelector((state) =>state);
@@ -32,7 +33,8 @@ export default function AdminRoutes() {
             <Route path='/hospitals/requests' element={<HospitalrequestPage />} />
             <Route path='/hospitals' element={<AdminHospitalPage />} />
             <Route path='/complaints' element={<AdminComplaintPage />} />
-           
+            <Route path='/refunds' element={<AdminRefundPage />} />
+            <Route path='/withdrawals' element={<AdminWithdrawalsPage />} />
            
         </>
         </Route>

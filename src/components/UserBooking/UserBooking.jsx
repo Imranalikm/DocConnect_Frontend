@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import formatDate from '../../helpers/dateFormat';
 import ViewEmr from '../Modals/ViewEmr/ViewEmr';
 import { cancelBooking } from "../../api/userApi"
+import ResheduleModal from '../Modals/ResheduleModal/ResheduleModal';
 
 
 function isSameDayAsToday(date) {
@@ -35,6 +36,11 @@ export default function UserBooking() {
   const [booking, setBooking] = useState({})
   const [filter, setFilter] = useState('all')
   const [showAddEmr, setShowAddEmr] = useState(false)
+  const [showResheduleModal,setShowResheduleModal]=useState(false);
+  const [doctorIdToReschedule, setDoctorIdToReschedule] = useState(null);
+  const [bookingIdtoReshedule,setBookindIdtoReshedule]=useState(null);
+
+  
 
   const user = useSelector((state) => state.user.details)
 
@@ -56,6 +62,12 @@ export default function UserBooking() {
     setShowAddEmr(true)
   }
 
+  const handleRescheduleClick = (doctorId,bookindId) => {
+    setDoctorIdToReschedule(doctorId);
+    setBookindIdtoReshedule(bookindId)  // Assume you have a state to hold the doctorId
+    setShowResheduleModal(true);
+  };
+
   const handleCancelBooking = async (bookingId) => {
     Swal.fire({
       title: 'Are you sure? Cancel this appointment',
@@ -72,7 +84,7 @@ export default function UserBooking() {
         if (!data.err) {
           Swal.fire(
             'Success!',
-            'Successfully Cancelled Appoiintments',
+            'Successfully Cancelled Appointments',
             'success'
           )
           setRefresh(!refresh);
@@ -114,7 +126,7 @@ export default function UserBooking() {
           </div>
           <Row xs={1} md={2} className="g-4">
   {bookingList.map((item, index) => (
-    <Col xs={6} key={index} onClick={() => item.status === "completed" && showEmr(item)}>
+    <Col xs={12} key={index} onClick={() => item.status === "completed" && showEmr(item)}>
       <div className="user-booking-item">
         <div className="ub-dr-profile">
           <img src={item.doctorId.image.url} alt="" />
@@ -142,7 +154,7 @@ export default function UserBooking() {
                   <Chip label={"Not attended"} color={"error"}  />
                 ) : (
                   <>
-                    <Chip label={"Upcoming"} color={item.status === 'consulted' ? "primary" : "secondary"}  />
+                    <Chip label={"Reshedule"} color={"secondary"} onClick={() => handleRescheduleClick(item.doctorId._id,item._id)}  />
                     {item.status === 'upcoming' && isWithinOneDayFromCreation(item.createdAt) && !isSameDayAsToday(item.date) && (
                       <button className='btn btn-dark' onClick={() => handleCancelBooking(item._id)}>Cancel</button>
                     )}
@@ -185,6 +197,10 @@ export default function UserBooking() {
       {
         showAddEmr &&
         <ViewEmr booking={booking} setShowAddEmr={setShowAddEmr} />
+      }
+      {
+        showResheduleModal && 
+        <ResheduleModal  doctorId={doctorIdToReschedule} bookingId={bookingIdtoReshedule} setShowResheduleModal={setShowResheduleModal} refresh={refresh} setRefresh={setRefresh}/>
       }
 
 

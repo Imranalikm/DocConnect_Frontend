@@ -39,8 +39,10 @@ function AddComplaint({ setShowModal }) {
     async function handleSubmit(e) {
         e.preventDefault();
         setLoading({ ...loading, submit: true })
+        console.log("**************************************")
         if (validForm()) {
             const data = await addComplaint(complaintAgainst, type, description);
+            console.log(data)
             if(!data.err){
                 Swal.fire(
                     'Success!',
@@ -123,7 +125,7 @@ function AddComplaint({ setShowModal }) {
                 }
                 <div className="modal-form-row">
                     <button type='button' onClick={() => setShowModal(false)} className='btn btn-outline-dark w-50'>close</button>
-                    <button type='submmit' disabled={!validForm()} className='btn btn-dark w-50'>
+                    <button type='submit' disabled={!validForm()} className='btn btn-dark w-50'>
                         Register Complaint
                         <ClipLoader size={20} color="white" loading={loading.submit} />
 

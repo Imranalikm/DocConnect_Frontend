@@ -40,7 +40,7 @@ export default function AdminComplaints() {
 
           <div className="admin-container">
             <h5>Complaints</h5>
-            <Table className='table-main' responsive>
+            <Table className='table-main'  striped bordered hover responsive>
               <thead>
                 <tr>
                   <th>#</th>

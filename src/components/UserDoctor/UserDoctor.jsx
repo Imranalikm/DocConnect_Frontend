@@ -10,6 +10,8 @@ import BookNow from "../Modals/BookNow/BookNow"
 import animationData from '../../assets/images/greencircle.json'
 import Lottie from "lottie-react"; // Import the Lottie component
 import { addDoctorReview, getDoctor } from "../../api/userApi"
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -24,6 +26,8 @@ function UserDoctor() {
     const days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
     const [daysAvailable, setDaysAvailable] = useState([])
     const [showBookNow, setShowBookNow] = useState(false)
+    const [hasReviewAccess, setHasReviewAccess] = useState(false);
+    
     const [doctor, setDoctor] = useState({
         image: {
             url: "https://bharajhospital.in/wp-content/uploads/2015/11/doctor-placeholder-500x500.jpg"
@@ -64,6 +68,7 @@ function UserDoctor() {
                 }
                 if (!data.err) {
                     setDoctor({ ...data.doctor, reviewAccess: data.reviewAccess, reviews: data.reviews, rating: data.rating })
+                    setHasReviewAccess(data.reviewAccess);
                 }
                 const { data: scheduleData } = await axiosInstance.get("/user/doctor/schedule/" + id);
 
@@ -167,7 +172,21 @@ if (!scheduleData.err) {
 
                                 </div>
                                 <div className="dr-profile-sec-row button">
-                                    <button onClick={()=>navigate("/chat?id="+doctor._id)}  >Chat</button>
+                                <button
+    onClick={() => {
+        if (hasReviewAccess) {
+            navigate("/chat?id=" + doctor._id);
+        } else {
+            // Use React Toastify to show a notification
+            toast.error("You do not have Chat access.", {
+                position: toast.POSITION.BOTTOM_CENTER,
+            });
+        }
+    }}
+    
+>
+    Chat
+</button>
                                     <button onClick={() => setShowBookNow(true)} disabled={!daysAvailable[0]} >Book Now</button>
                                 </div>
                             </div>

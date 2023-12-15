@@ -1,3 +1,72 @@
 .admin-main{
     background-color: var(--adminBg);
 }
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: -15px; /* Adjust as needed */
+  }
+  
+  .dash-item {
+    display: flex;
+    align-items: center;
+    
+    
+    
+    background: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+    
+
+    
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 15px; /* Adjust as needed */
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+  
+    &:hover {
+      transform: scale(1.05); /* Adjust as needed for a subtle hover effect */
+    }
+  }
+  
+  .dash-item-desc {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .dash-item-desc b {
+    display: block;
+    font-size: 16px;
+    font-weight: bolder;
+    color: #ffffff; /* Adjust as needed */
+  }
+  
+  .dash-item-desc h3 {
+    font-size: 24px;
+    color: #ffffff; /* Adjust as needed */
+    margin-top: 5px;
+  }
+  
+  .dash-item.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    background: linear-gradient(225deg, #2B86C5 0%, #784BA0 50%, #FF3CAC 100%);
+
+
+  }
+  
+  .icon-div {
+    background-color: rgba(0, 0, 0, 0.726); /* Adjust as needed */
+    color: #fff; /* Adjust as needed */
+    border-radius: 50%;
+    padding: 10px;
+  }
+  
+  .icon {
+    font-size: 24px;
+  }
+  

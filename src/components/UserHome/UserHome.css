@@ -28,36 +28,45 @@
     height: 55px;
     border: none;
     outline: none;
-    background-image: linear-gradient(to right, var(--mainColor), var(--secondColor));
+    background:   linear-gradient(90deg, hsla(254, 68%, 9%, 1) 0%, hsla(269, 97%, 37%, 1) 33%, hsla(320, 77%, 55%, 1) 66%,  hsla(254, 68%, 9%, 1) 100%);
     border-radius: 10px;
     font-weight: 500;
     color: white;
 }
 .user-home-chat-img img{
-    object-fit: contain;
-    height: 600px;
+  border-radius: 15px;
+}
+.user-home-chat-img img{
+    object-fit: cover;
+    height: 300px;
+    width:100%;
+    border-radius: 15px !important;
+    
 }
 .user-home-chat-img, .user-home-chat-desc{
     display: flex;
     justify-content: center;
     width: 100%;
+  
 }
 .user-home-chat-desc{
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    height: 600px;
+    height: 300px;
     gap: 10px;
+    
 }
 .user-home-chat-desc button{
-    width: 180px;
-    height: 55px;
+    width: 150px;
+    height: 35px;
     border: none;
     outline: none;
-    background-image: linear-gradient(to right, var(--mainColor), var(--secondColor));
+    background:   linear-gradient(90deg, hsla(254, 68%, 9%, 1) 0%, hsla(269, 97%, 37%, 1) 33%, hsla(320, 77%, 55%, 1) 66%,  hsla(254, 68%, 9%, 1) 100%);;
     border-radius: 10px;
     font-weight: 500;
     color: white;
+    
 }
 @media(max-width:600px){
     .user-banner{
@@ -83,7 +92,7 @@
     }
 }
 .row{
-  background-color: #fff;
+  background-color:  transparent;
 }
 
 .div {
@@ -189,3 +198,6 @@
   .link{
     color: #000;
   }
+
+ 
+  

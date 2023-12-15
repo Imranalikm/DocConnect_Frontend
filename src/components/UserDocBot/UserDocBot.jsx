@@ -4,7 +4,7 @@ import {MainContainer,ChatContainer,MessageList,Message,MessageInput,TypingIndic
 import { useState } from 'react'
 import UserHeader from "../UserHeader/UserHeader"
 import docbot from "../../assets/images/docbt.jpg"
-const API_KEY ="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 "
+const API_KEY ="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"
 
 const UserDocBot = () => {
     const [typing,setTyping] =useState()

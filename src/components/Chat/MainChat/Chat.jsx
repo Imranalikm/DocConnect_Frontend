@@ -9,7 +9,7 @@ import { createChat, findChat, getUserChats } from '../../../api/chatRequestApi'
 import { useSelector } from 'react-redux'
 import  { io }  from "socket.io-client";
 
-const socket = io.connect("https://docconnect.imranalikm.online");
+const socket = io.connect("http://localhost:3000");
 
 
 export default function Chat({ }) {

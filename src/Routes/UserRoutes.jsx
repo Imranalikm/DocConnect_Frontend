@@ -16,7 +16,7 @@ import UserAuthCallbackPage from "../pages/user/UserAuthCallbackPage.jsx"
 import UserVideoCallPage from "../pages/user/UserVideoCallPage.jsx";
 import LoginGateWayPage from "../pages/user/LoginGateWayPage.jsx"
 import Chat from "../components/Chat/MainChat/Chat.jsx"
-
+import UserForgotPage from "../pages/user/UserForgotPage.jsx"
 export default function UserRoutes() {
   const { refresh, user } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -54,6 +54,7 @@ export default function UserRoutes() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<UserSignupPage />} />
           <Route path="/callback" element={<UserAuthCallbackPage />} />
+          <Route path="/forgot" element={<UserForgotPage />} />
           <Route path="/" element={<LoginGateWayPage/>}/>
         
         </>
@@ -63,6 +64,7 @@ export default function UserRoutes() {
            <Route path="/" element={<LoginGateWayPage/>} />
           <Route path="/login" element={<Navigate to={"/home"} />} />
           <Route path="/signup" element={<Navigate to="/home" />} />
+          <Route path="/forgot" element={<Navigate to="/home" />} />
           <Route path="/callback" element={<UserAuthCallbackPage />} />
           
          

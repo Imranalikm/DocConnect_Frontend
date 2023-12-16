@@ -101,13 +101,19 @@
     overflow: hidden;
     position: relative;
     display: flex;
-    min-height: 352px;
+    height: 352px;
     padding: 0 0px;
     border-radius: 2rem;
     margin-left: 40px;
     margin-right:40px ;
     margin-top: 15px;
    
+  }
+  @media (max-width: 767px) {
+    /* Adjust the height for mobile devices */
+    .div {
+      height: 200px; /* Adjust this value as needed */
+    }
   }
   @media (max-width: 991px) {
     .div {

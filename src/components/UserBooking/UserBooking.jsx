@@ -12,7 +12,7 @@ import formatDate from '../../helpers/dateFormat';
 import ViewEmr from '../Modals/ViewEmr/ViewEmr';
 import { cancelBooking } from "../../api/userApi"
 import ResheduleModal from '../Modals/ResheduleModal/ResheduleModal';
-
+import UserBottom from "../UserBottom/UserBottom"
 
 function isSameDayAsToday(date) {
   const today = new Date();
@@ -193,7 +193,7 @@ export default function UserBooking() {
         </div>
 
       </Container>
-      
+      <UserBottom page={'profile'}></UserBottom>
       {
         showAddEmr &&
         <ViewEmr booking={booking} setShowAddEmr={setShowAddEmr} />

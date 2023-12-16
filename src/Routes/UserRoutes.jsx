@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axiosInstance from '../axios/axiosInstance.js';
-import UserHomePage from "../pages/user/UserHomePage";
+// import UserHomePage from "../pages/user/UserHomePage";
 import ProtectedUserRoutes from "../utils/ProtectedUserRoutes";
 import UserDepartmentPage from "../pages/user/UserDepartmentPage";
 import LoginPage from "../pages/user/UserLoginPage";
@@ -17,6 +17,9 @@ import UserVideoCallPage from "../pages/user/UserVideoCallPage.jsx";
 import LoginGateWayPage from "../pages/user/LoginGateWayPage.jsx"
 import Chat from "../components/Chat/MainChat/Chat.jsx"
 import UserForgotPage from "../pages/user/UserForgotPage.jsx"
+import Loading from "../components/Loading/Loading.jsx"
+const LazyHome = React.lazy(()=> import ('../pages/user/UserHomePage.jsx'))
+
 export default function UserRoutes() {
   const { refresh, user } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -37,7 +40,11 @@ export default function UserRoutes() {
     <Routes>
        <Route element={<ProtectedUserRoutes user={user} />}>
         
-        <Route path="/home" element={<UserHomePage />} />
+        <Route path="/home" element={
+          <React.Suspense fallback={< Loading />}>
+            <LazyHome/>
+          </React.Suspense>
+        } />
         <Route path="/department/:id" element={<UserDepartmentPage />} />
         <Route path="/search" element={<UserSearchPage />} />
         <Route path="/hospital/:id" element={<UserHospitalPage />} />

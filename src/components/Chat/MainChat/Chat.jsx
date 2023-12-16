@@ -8,8 +8,9 @@ import { useParams, useSearchParams } from 'react-router-dom'
 import { createChat, findChat, getUserChats } from '../../../api/chatRequestApi'
 import { useSelector } from 'react-redux'
 import  { io }  from "socket.io-client";
+import UserBottom from "../../UserBottom/UserBottom"
 
-const socket = io.connect("http://localhost:3000");
+const socket = io.connect("https://docconnect.imranalikm.online");
 
 
 export default function Chat({ }) {
@@ -111,6 +112,7 @@ export default function Chat({ }) {
       </section>
      
     </div>
+    <UserBottom page={'chat'}></UserBottom>
     </>
   )
 }

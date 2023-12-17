@@ -22,7 +22,7 @@ function DoctorList({ list, title,rating }) {
     return (
         <div>
             <Row className='d-flex justify-content-center' style={{borderRadius:'15px'}}>
-                <h5 className='text-center' style={{marginTop:'10px'}}>{title ? title : "Doctors"}</h5>
+                <h5 className='text-center' style={{marginTop:'10px',fontWeight:'bold'}}>{title ? title : "Doctors"}</h5>
 
             </Row>
             <Row className='d-flex justify-content-center mt-5 mb-5' style={{borderRadius:'15px'}}>
@@ -43,7 +43,7 @@ function DoctorList({ list, title,rating }) {
                                         
                                             <span>{item.department.name}</span>
                                             <span>{item.hospitalId.name}</span>
-                                            <b style={{ backgroundColor: "red" ,marginTop:'5px'}} >₹{item.fees}</b>
+                                            <b style={{ background: "linear-gradient(90deg, hsla(254, 68%, 9%, 1) 0%, hsla(269, 97%, 37%, 1) 33%, hsla(320, 77%, 55%, 1) 66%,  hsla(254, 68%, 9%, 1) 100%)" ,marginTop:'5px'}} >₹{item.fees}</b>
                                         </div>
                                     </div>
                                 </div>

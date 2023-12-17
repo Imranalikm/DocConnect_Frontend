@@ -65,7 +65,7 @@ const UserHome = () => {
 
       <Container>
           <Row className='mt-5'>
-            <DoctorList list={doctorList} rating={doctorRating} title="Top Doctors" />
+            <DoctorList list={doctorList} rating={doctorRating} title="Popular Doctors" />
           </Row>
         </Container>
         

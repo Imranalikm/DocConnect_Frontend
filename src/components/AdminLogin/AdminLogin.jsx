@@ -4,7 +4,7 @@ import { TextField } from "@mui/material";
 import loginImage from "../../assets/images/logo.PNG";
 import "../UserLogin/userlogin.css";
 import { ClipLoader } from "react-spinners";
-import axiosInstance from '../../axios/axiosInstance'
+import axiosInstance from "../../axios/axiosInstance";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,9 +12,8 @@ import { toast } from "react-toastify";
 import Lottie from "lottie-react";
 import animationData from "../../assets/images/adminlottie.json";
 
-
 function AdminLogin() {
-  const [email, setEmail] = useState ("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
   const dispatch = useDispatch();
@@ -31,7 +30,10 @@ function AdminLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading({ ...loading, submit: true });
-    const { data } = await axiosInstance.post("/admin/auth/login", { email, password });
+    const { data } = await axiosInstance.post("/admin/auth/login", {
+      email,
+      password,
+    });
     if (data.err) {
       toast.error(data.message);
       setErrMessage(data.message);
@@ -42,27 +44,30 @@ function AdminLogin() {
   };
 
   return (
-    <div className="login-main" >
+    <div className="login-main">
       <ToastContainer position="top-right" autoClose={5000} />
       <Row>
         <nav className="login-nav">
           <Container>
             <Row>
-                        <img src={loginImage} alt="" style={{ width: "150px", height: "auto", overflow: "hidden" }} />
-                        </Row>
+              <img
+                src={loginImage}
+                alt=""
+                style={{ width: "150px", height: "auto", overflow: "hidden" }}
+              />
+            </Row>
           </Container>
         </nav>
       </Row>
       <Row>
         <div className="login-container">
-          
           <Row>
             <Col md={6}>
               <Lottie
                 animationData={animationData}
                 loop
                 speed={0.5}
-                style={{ width: "580px", height: "500px", }} // Set the desired dimensions
+                style={{ width: "580px", height: "500px" }} // Set the desired dimensions
               />
             </Col>
             <Col md={6}>
@@ -110,7 +115,6 @@ function AdminLogin() {
                         loading={loading.submit}
                       />
                     </button>
-                    
                   </div>
                   <div className="login-row google-btn"></div>
                 </form>

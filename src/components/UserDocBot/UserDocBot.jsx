@@ -5,7 +5,7 @@ import { useState } from 'react'
 import UserHeader from "../UserHeader/UserHeader"
 import docbot from "../../assets/images/docbt.jpg"
 
-const API_KEY ="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"
+const API_KEY =process.env.API_KEY
 
 const UserDocBot = () => {
     const [typing,setTyping] =useState()

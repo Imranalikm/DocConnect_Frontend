@@ -9,26 +9,23 @@ const API_KEY = "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"
 
 
 const UserDocBot = () => {
-   
-  const [typing, setTyping] = useState(false);
-  const [messages, setMessages] = useState([
-    {
-      message: "Hello, I am Dr.Bot!",
-      sender: 'ChatGPT',
-    },
-  ]);
+    const [typing,setTyping] =useState()
+  const [messages,setMessages]=useState([{
+     message:"Hello,I am Dr.Bot!",
+     sender:'ChatGPT'
+  }])
 
-  const handleSend = async (message) => {
+  const handleSend =async (message)=>{
     const newMessage = {
       message: message,
       sender: 'user',
       direction: 'outgoing',
     };
-
+  
     const newMessages = [...messages, newMessage];
     setMessages(newMessages);
     setTyping(true);
-
+  
     try {
       await processMessageToChatGPT(newMessages);
     } catch (error) {
@@ -36,69 +33,50 @@ const UserDocBot = () => {
     } finally {
       setTyping(false);
     }
-  };
+  }
 
-  async function processMessageToChatGPT(chatMessages) {
-    let apiMessages = chatMessages.map((messageObject) => {
-      let role = "";
-      if (messageObject.sender === "ChatGPT") {
-        role = "assistant";
-      } else {
-        role = "user";
-      }
-      return { role: role, content: messageObject.message };
-    });
-
-    // Add a function to check if the message is health-related
-    const isHealthRelated = (message) => {
-      // You can customize this logic based on your requirements
-      const healthKeywords = ["health", "medicine", "symptoms", "doctor", "medical"];
-      return healthKeywords.some(keyword => message.toLowerCase().includes(keyword));
-    };
-
-    const userMessage = apiMessages.find(messageObject => messageObject.role === "user");
+     async function processMessageToChatGPT(chatMessages) {
+      let apiMessages = chatMessages.map((messageObject) => {
+        let role = "";
+        if (messageObject.sender === "chatGPT") {
+          role = "assistant";
+        } else {
+          role = "user";
+        }
+        return { role: role, content: messageObject.message };
+      });
     
-    if (userMessage && isHealthRelated(userMessage.content)) {
       const systemMessage = {
         role: "system",
-        content: "Answer for medical or health-related queries only! The answer should be short. Don't answer other questions.",
+        content: "Answer for medical or health related queries only!.answer should be short.Dont answer for other questions",
       };
-
+    
       const apiRequestBody = {
         model: "gpt-3.5-turbo",
         messages: [systemMessage, ...apiMessages],
       };
-
-      try {
-        const response = await fetch("https://api.openai.com/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            Authorization: "Bearer " + API_KEY,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(apiRequestBody),
+    
+      await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + API_KEY, // Fixed the typo in "Authorization"
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(apiRequestBody),
+      })
+        .then((data) => {
+          return data.json();
+        })
+        .then((data) => {
+          console.log(data);
+          console.log(data.choices[0].message.content);
+          setMessages([...chatMessages,{
+            message:data?.choices[0]?.message?.content,
+            sender:"chatGPT"
+          }])
         });
-
-        const data = await response.json();
-        console.log(data);
-
-        if (data.choices && data.choices.length > 0) {
-          setMessages([...chatMessages, {
-            message: data.choices[0].message.content,
-            sender: "ChatGPT",
-          }]);
-        }
-      } catch (error) {
-        console.error('Error processing API response:', error);
-      }
-    } else {
-      // If the user's message is not health-related, provide a default response
-      setMessages([...chatMessages, {
-        message: "I'm sorry, I can only answer questions related to health and the medical field. Please ask a health-related question.",
-        sender: "ChatGPT",
-      }]);
+        setTyping(false);
     }
-  }
     
 
   return (

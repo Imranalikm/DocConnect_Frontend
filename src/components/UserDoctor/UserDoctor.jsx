@@ -27,6 +27,7 @@ function UserDoctor() {
     const [daysAvailable, setDaysAvailable] = useState([])
     const [showBookNow, setShowBookNow] = useState(false)
     const [hasReviewAccess, setHasReviewAccess] = useState(false);
+    const [hasChatAccess,setHasChatAccess] =useState(false);
     
     const [doctor, setDoctor] = useState({
         image: {
@@ -60,15 +61,16 @@ function UserDoctor() {
             async function () {
                 const data = await getDoctor(id)
                 if (!data.err) {
-                    setDoctor({ ...data.doctor, reviewAccess: data.reviewAccess,  reviews: data.reviews, rating: data.rating })
+                    setDoctor({ ...data.doctor, reviewAccess: data.reviewAccess,  reviews: data.reviews, rating: data.rating ,})
                     if (data.review) {
                         setReview(data.review.review)
                         setRating(data.review.rating)
                     }
                 }
                 if (!data.err) {
-                    setDoctor({ ...data.doctor, reviewAccess: data.reviewAccess, reviews: data.reviews, rating: data.rating })
+                    setDoctor({ ...data.doctor, reviewAccess: data.reviewAccess, reviews: data.reviews, rating: data.rating,chatAccess :data.AccessforChat})
                     setHasReviewAccess(data.reviewAccess);
+                    setHasChatAccess(data.AccessforChat)
                 }
                 const { data: scheduleData } = await axiosInstance.get("/user/doctor/schedule/" + id);
 
@@ -174,7 +176,7 @@ if (!scheduleData.err) {
                                 <div className="dr-profile-sec-row button">
                                 <button
     onClick={() => {
-        if (hasReviewAccess) {
+        if (hasChatAccess) {
             navigate("/chat?id=" + doctor._id);
         } else {
             // Use React Toastify to show a notification

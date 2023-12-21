@@ -58,7 +58,7 @@ export default function HospitalSchedule() {
   
     return '';
   };
-  
+
   useEffect(() => {
     (async function () {
       try {
@@ -92,17 +92,30 @@ export default function HospitalSchedule() {
 
   const addTime = (day) => {
     const validationMessage = validateRow(day);
-
+  
     if (validationMessage) {
       toast.error(validationMessage);
     } else {
-      scheduleDispatch({ type: day, payload: dayState[day] });
-      setDayState((prevState) => ({
-        ...prevState,
-        [day]: { ...initialDayState },
-      }));
+      // Check if the time slot already exists in the schedule for the selected day
+      const isDuplicate = scheduleState[day].some(
+        (item) =>
+          dayjs(item.startDate).isSame(dayState[day].startDate) &&
+          dayjs(item.endDate).isSame(dayState[day].endDate) &&
+          item.slot === dayState[day].slot
+      );
+  
+      if (isDuplicate) {
+        toast.error('This time slot already exists in the schedule for the selected day.');
+      } else {
+        scheduleDispatch({ type: day, payload: dayState[day] });
+        setDayState((prevState) => ({
+          ...prevState,
+          [day]: { ...initialDayState },
+        }));
+      }
     }
   };
+  
 
   const removeTime = (day, index) => {
     scheduleDispatch({ type: `rm${day.charAt(0).toUpperCase()}${day.slice(1)}`, payload: index });

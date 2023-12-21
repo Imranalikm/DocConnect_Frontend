@@ -19,8 +19,6 @@ function BookNow({ daysAvailable, doctor, setShowBookNow, refresh, setRefresh}) 
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
     const [online,setOnline] =useState(false)
-    const [nameError, setNameError] = useState('');
-  const [ageError, setAgeError] = useState('');
     
     const navigate = useNavigate()
 
@@ -110,24 +108,14 @@ function BookNow({ daysAvailable, doctor, setShowBookNow, refresh, setRefresh}) 
 
     }
     const validForm = () => {
+
         const isValidAge = age >= 1 && age <= 130;
-    
-        // Validate name
-        if (name.trim() === '') {
-          setNameError('Name is required');
-        } else {
-          setNameError('');
+        if (bookDate === "" || bookTimeSlot === "" ||
+            name.trim()==="" || !age || !isValidAge) {
+            return false;
         }
-    
-        // Validate age
-        if (!age || !isValidAge) {
-          setAgeError('Please enter a valid age between 1 and 130');
-        } else {
-          setAgeError('');
-        }
-    
-        return name.trim() !== '' && age && isValidAge && bookDate !== '' && bookTimeSlot !== '' && !online;
-      };
+        return true;
+    }
 
    
 
@@ -237,12 +225,10 @@ function BookNow({ daysAvailable, doctor, setShowBookNow, refresh, setRefresh}) 
                     </div>
                 }
                 <div className="booking-row">
-                <TextField id="outlined-basic" value={name} onChange={(e) => setName(e.target.value)} label="Name" type="text" variant="outlined" fullWidth className='input' error={!!nameError}
-              helperText={nameError}  />
+                <TextField id="outlined-basic" value={name} onChange={(e) => setName(e.target.value)} label="Name" type="text" variant="outlined" fullWidth className='input' />
                 </div>
                 <div className="booking-row">
-                <TextField id="outlined-basic" value={age} onChange={(e) => setAge(e.target.value)} label="Age" type="number" variant="outlined" fullWidth className='input'  error={!!ageError}
-              helperText={ageError}/>
+                <TextField id="outlined-basic" value={age} onChange={(e) => setAge(e.target.value)} label="Age" type="number" variant="outlined" fullWidth className='input' />
                 </div>
 
                 <div className="bttn">

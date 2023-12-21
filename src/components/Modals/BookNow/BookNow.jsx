@@ -19,6 +19,8 @@ function BookNow({ daysAvailable, doctor, setShowBookNow, refresh, setRefresh}) 
     const [name, setName] = useState("")
     const [age, setAge] = useState("")
     const [online,setOnline] =useState(false)
+    const [nameError, setNameError] = useState('');
+  const [ageError, setAgeError] = useState('');
     
     const navigate = useNavigate()
 

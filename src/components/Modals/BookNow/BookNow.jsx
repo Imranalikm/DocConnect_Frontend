@@ -108,8 +108,10 @@ function BookNow({ daysAvailable, doctor, setShowBookNow, refresh, setRefresh}) 
 
     }
     const validForm = () => {
+
+        const isValidAge = age >= 1 && age <= 130;
         if (bookDate === "" || bookTimeSlot === "" ||
-            name.trim()==="" || !age ) {
+            name.trim()==="" || !age || !isValidAge) {
             return false;
         }
         return true;

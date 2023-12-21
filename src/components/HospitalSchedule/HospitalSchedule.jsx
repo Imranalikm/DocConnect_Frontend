@@ -36,16 +36,16 @@ export default function HospitalSchedule() {
 
   const validateRow = (day) => {
     const { startDate, endDate, slot } = dayState[day];
-
+  
     const isStartTimeEqualEndTime = startDate && endDate && dayjs(startDate).isSame(endDate);
     const isStartTimeGreaterThanEndTime = startDate && endDate && dayjs(startDate).isAfter(endDate);
     const isTimeDifferenceLessThan20Minutes = startDate && endDate && dayjs(endDate).diff(startDate, 'minutes') < 20;
     const isNightSchedule = startDate && endDate && dayjs(startDate).hour() >= 0 && dayjs(endDate).hour() <= 6;
-
-    const isInvalidOriginal = !startDate || !endDate || slot <= 0;
-
+  
+    const isInvalidOriginal = !startDate || !endDate || slot < 0 || slot > 5;
+  
     if (isInvalidOriginal) {
-      return 'Please fill in all fields and ensure slot is greater than 0.';
+      return 'Please fill in all fields and ensure slot is between 0 and 5.';
     } else if (isStartTimeEqualEndTime) {
       return 'Start time cannot be equal to end time.';
     } else if (isStartTimeGreaterThanEndTime) {
@@ -55,10 +55,10 @@ export default function HospitalSchedule() {
     } else if (isNightSchedule) {
       return 'Night schedule (12:00 AM to 6:00 AM) is not allowed.';
     }
-
+  
     return '';
   };
-
+  
   useEffect(() => {
     (async function () {
       try {

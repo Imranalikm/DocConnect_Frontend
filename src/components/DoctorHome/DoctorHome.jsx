@@ -40,7 +40,7 @@ function DoctorHome() {
         <DoctorSideBar page={"home"} />
         <div className="admin-container">
           <Container fluid>
-            <div className="user-booking-container" stye>
+            <div className="user-booking-container" >
               <h4 className="">Todays Booking</h4>
               {bookingList[0] ? (
                 <Row xs={1} md={2} lg={2} className="mx-md-3" style={{backgroundColor:'#f9fafb'}}>

@@ -8,6 +8,7 @@ import DoctorHeader from "../DoctorHeader/DoctorHeader";
 import DoctorSideBar from "../DoctorSidebar/DoctorSidebar";
 import notFoundImg from "../../assets/images/no-result.jpg";
 import formatDate from "../../helpers/dateFormat";
+import '../UserBooking/UserBooking'
 
 function DoctorHome() {
   const [bookingList, setBookingList] = useState([]);

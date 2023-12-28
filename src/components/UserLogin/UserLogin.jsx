@@ -17,13 +17,9 @@ function UserLogin() {
   const [password, setPassword] = useState("");
   const [errMessage, setErrMessage] = useState("");
   const dispatch = useDispatch();
-  const [loginType, setLoginType] = useState("doctor");
+  
 
-  const handleLoginTypeChange = (event, newLoginType) => {
-    if (newLoginType !== null) {
-      setLoginType(newLoginType);
-    }
-  };
+ 
 
   const validForm = () => {
     if (password.trim() === "" || email.trim() === "") {
@@ -34,7 +30,7 @@ function UserLogin() {
 
   const handleGoogleLogin = async (e) => {
     e.preventDefault()
-    let redirectUri = "http://localhost:3000"+"/user/auth/google/callback"
+    let redirectUri = "http://localhost:3000/user/auth/google/callback"
     let clientId = "875796229095-mvsbce4r9va50psiblggbsqv1jhpv24i.apps.googleusercontent.com"
     try {
         window.open(
@@ -48,6 +44,21 @@ function UserLogin() {
   const [loading, setLoading] = useState({
     submit: false,
   });
+
+  const testLogin=async(e)=>{
+    e.preventDefault();
+    setLoading({ ...loading, submit: true })
+    let tempEmail="imranalikm@gmail.com"
+    let tempPassword="asdf"
+    const { data } = await axiosInstance.post("/user/auth/login", { email:tempEmail, password:tempPassword });
+    if (data.err) {
+        setErrMessage(data.message)
+    } else {
+        dispatch({ type: "refresh" })
+    }
+    setLoading({ ...loading, submit: false })
+}
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading({ ...loading, submit: true });
@@ -139,16 +150,16 @@ function UserLogin() {
                     </button>
                   </div>
                   <div className="login-row google-btn">
-                    {/* <Button variant="contained" onClick={demoLogin}>
-                                            Demo Login
-                                    </Button> */}
+                    <Button variant="contained" onClick={testLogin}>
+                                            Test Login
+                                    </Button>
                   </div>
-                  {/* <div className="login-row">OR</div> */}
+                  <div className="login-row">OR</div>
                   <div className="login-row google-btn">
-                    {/* <Button variant="contained" onClick={handleGoogleLogin}>
+                    <Button variant="contained" onClick={handleGoogleLogin}>
                                             <FcGoogle className='icon' />
                                             Login with Google
-                                    </Button> */}
+                                    </Button>
                   </div>
                   <div className="login-row mt-3">
                     <Link to="/signup" className="link">

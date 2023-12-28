@@ -13,7 +13,6 @@ import { findDoctorChat, getDoctorChats } from '../../../api/doctorChatRequestAp
 const socket = io.connect("https://docconnect.imranalikm.online");
 
 
-
 export default function DoctorChat({ }) {
   const [currentChat, setCurrentChat] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams()

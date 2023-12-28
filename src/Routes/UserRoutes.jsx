@@ -15,6 +15,8 @@ import Chat from "../components/Chat/MainChat/Chat.jsx";
 import UserForgotPage from "../pages/user/UserForgotPage.jsx";
 import Loading from "../components/Loading/Loading.jsx";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
+
+
 const LazyHome = React.lazy(() => import("../pages/user/UserHomePage.jsx"));
 const LazyUserProfile = React.lazy(() =>
   import("../pages/user/UserProfilePage")
@@ -23,6 +25,8 @@ const LazyUserDocbot = React.lazy(() =>
   import("../pages/user/userDocBotPage.jsx")
 );
 const LazyUserSearch = React.lazy(() => import("../pages/user/UserSearchPage"));
+
+
 
 export default function UserRoutes() {
   const { refresh, user } = useSelector((state) => state);

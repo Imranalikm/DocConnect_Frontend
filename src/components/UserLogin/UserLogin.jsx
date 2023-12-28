@@ -30,7 +30,7 @@ function UserLogin() {
 
   const handleGoogleLogin = async (e) => {
     e.preventDefault()
-    let redirectUri = "http://localhost:3000/user/auth/google/callback"
+    let redirectUri = "https://docconnect.imranalikm.online/user/auth/google/callback"
     let clientId = "875796229095-mvsbce4r9va50psiblggbsqv1jhpv24i.apps.googleusercontent.com"
     try {
         window.open(

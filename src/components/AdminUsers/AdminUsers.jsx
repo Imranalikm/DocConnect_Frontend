@@ -31,7 +31,7 @@ export default function AdminUsers() {
           console.log(err);
         }
       }
-    )();
+    )(); 
   }, [refresh, name]);
 
   async function toggleBlockStatus(id, isBlocked) {

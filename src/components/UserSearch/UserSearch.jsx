@@ -8,6 +8,7 @@ import HospitalList from '../HospitalList/HospitalList'
 import UserHeader from '../UserHeader/UserHeader'
 import './userSearch.css'
 import UserBottom from "../UserBottom/UserBottom"
+import Pagination from 'react-bootstrap/Pagination';
 
 function UserSearch() {
     const [name, setName] = useState("")
@@ -19,25 +20,29 @@ function UserSearch() {
     const [departmentList, setDepartmentList] = useState([])
     const [department, setDepartment] = useState("")
     const [sort, setSort] = useState("")
+    
+
     async function handleSearch() {
 
         if (searchType === 'hospital') {
-            let { data } = await axiosInstance.get("/user/hospitals?name=" + name + "&department=" + department);
+            let { data } = await axiosInstance.get("/user/hospitals?name=" + name + "&department=" + department );
             
             if (!data.err) {
                 setHospitalRating(data.rating)
                 setHospitalList(data.hospitals)
             }
         } else {
-            let { data } = await axiosInstance.get("/user/doctors?name=" + name + "&department=" + department + "&sort=" + sort);
+            let { data } = await axiosInstance.get("/user/doctors?name=" + name + "&department=" + department + "&sort=" + sort );
             console.log(data);
             if (!data.err) {
                 setDoctorRating(data.rating)
                 setDoctorList(data.doctors)
+               
             }
         }
 
     }
+    
     useEffect(() => {
         handleSearch();
     }, [searchType, department, sort, name])
@@ -116,6 +121,8 @@ function UserSearch() {
                     </Row>
                 }
             </Container>
+            
+         
             <UserBottom page={'search'}></UserBottom>
              
         </div>

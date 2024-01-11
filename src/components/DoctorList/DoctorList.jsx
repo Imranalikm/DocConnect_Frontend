@@ -57,7 +57,7 @@ function DoctorList({ list, title,rating }) {
                     </div>
                 }
 
-
+            
 
             </Row>
         </div>

@@ -7,7 +7,18 @@ import docbot from "../../assets/images/docbt.jpg"
 
 const API_KEY = "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"
 
+const MEDICAL_CHATBOT_PROMPT = `
+You are a specialized medical chatbot designed to provide concise and accurate information on health-related queries.
 
+- Begin with a brief greeting and assurance of assistance for health-related questions.
+- Respond to inquiries about symptoms, medical conditions, and treatment options with short, informative answers.
+- Offer general advice on maintaining a healthy lifestyle, such as diet and exercise tips.
+- Provide information on common medications, their uses, and potential side effects.
+- Suggest seeking professional medical advice for serious or urgent health concerns.
+- Avoid responding to non-health-related questions.
+
+Return responses in a clear and succinct manner to ensure user understanding.
+`;
 const UserDocBot = () => {
     const [typing,setTyping] =useState()
   const [messages,setMessages]=useState([{
@@ -48,7 +59,7 @@ const UserDocBot = () => {
     
       const systemMessage = {
         role: "system",
-        content: "Answer for medical or health related queries only!.answer should be short.Dont answer for other questions",
+        content: MEDICAL_CHATBOT_PROMPT,
       };
     
       const apiRequestBody = {

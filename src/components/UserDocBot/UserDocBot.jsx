@@ -5,7 +5,7 @@ import { useState } from 'react'
 import UserHeader from "../UserHeader/UserHeader"
 import docbot from "../../assets/images/docbt.jpg"
 
-const API_KEY = "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"
+const API_KEY = "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"
 
 const MEDICAL_CHATBOT_PROMPT = `
 You are a specialized medical chatbot designed to provide concise and accurate information on health-related queries.

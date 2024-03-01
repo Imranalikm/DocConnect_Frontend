@@ -22,7 +22,7 @@ function UserDepartmentRow({ list, hospitalWise, hospitalId }) {
                         </Container>
                         <Container>
 
-                            <Row className='mt-1 d-flex justify-content-center mt-5'>
+                            <Row className='d-flex justify-content-center mt-5'>
                                 {
                                     list[0] ?
                                         list.map((item, index) => {

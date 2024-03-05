@@ -17,6 +17,21 @@ function HospitalLogin() {
     })
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const testLogin=async(e)=>{
+        e.preventDefault();
+        setLoading({ ...loading, submit: true })
+        let tempEmail="aster@gmail.com"
+        let tempPassword="asd"
+        const { data } = await axiosInstance.post("/hospital/auth/login", { email:tempEmail, password:tempPassword });
+        if (data.err) {
+            setErrMessage(data.message)
+        } else {
+            dispatch({ type: "refresh" })
+        }
+        setLoading({ ...loading, submit: false })
+    }
+
     async function handleSubmit(e) {
         e.preventDefault();
         setLoading({ ...loading, submit: true })
@@ -88,6 +103,11 @@ function HospitalLogin() {
                                             <ClipLoader size={20} color="white" loading={loading.submit} />
                                         </button>
                                     </div>
+                                    <div className="login-row google-btn">
+                    <Button variant="contained" onClick={testLogin}>
+                                            Test Login
+                                    </Button>
+                  </div>
                                     <div className="login-row google-btn">
                                    
                                         

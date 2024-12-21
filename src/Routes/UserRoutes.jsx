@@ -34,7 +34,7 @@ export default function UserRoutes() {
 
   useEffect(() => {
     (async function () {
-      let { data } = await axios.get("/user/auth/check");
+      let { data } = await axiosInstance.get("/user/auth/check");
       dispatch({
         type: "user",
         payload: { login: data.loggedIn, details: data.user },

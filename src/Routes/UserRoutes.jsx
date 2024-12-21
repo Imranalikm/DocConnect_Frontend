@@ -42,7 +42,10 @@ useEffect(() => {
       });
     } catch (error) {
       console.error("Error during user authentication check:", error);
-     
+      dispatch({
+        type: "user",
+        payload: { login: false, details: null },
+      });
     }
   })();
 }, [refresh, user]);

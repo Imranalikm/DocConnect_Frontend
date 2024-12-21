@@ -5,19 +5,23 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-
 instance.interceptors.request.use(
-    (config) => {    
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
+  (config) => {    
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+instance.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response) {
+      return Promise.reject(error.response.data); // Use response data if available
     }
-  );
-
-instance.interceptors.response.use( response => response ,
-    error => Promise.reject(error.response.data)
-    )
-
+    return Promise.reject({ message: "Network Error", ...error }); // Provide fallback error object
+  }
+);
 
 export default instance;

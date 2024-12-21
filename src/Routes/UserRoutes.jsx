@@ -32,23 +32,15 @@ export default function UserRoutes() {
   const { refresh, user } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-useEffect(() => {
-  (async function () {
-    try {
-      let { data } = await axiosInstance.get("/user/auth/check");
+  useEffect(() => {
+    (async function () {
+      let { data } = await axios.get("/user/auth/check");
       dispatch({
         type: "user",
         payload: { login: data.loggedIn, details: data.user },
       });
-    } catch (error) {
-      console.error("Error during user authentication check:", error);
-      dispatch({
-        type: "user",
-        payload: { login: false, details: null },
-      });
-    }
-  })();
-}, [refresh, user]);
+    })();
+  }, [refresh]);
 
 
   return (

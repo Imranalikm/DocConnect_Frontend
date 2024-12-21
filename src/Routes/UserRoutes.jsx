@@ -32,23 +32,34 @@ export default function UserRoutes() {
   const { refresh, user } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-useEffect(() => {
-  (async function () {
-    try {
-      let { data } = await axiosInstance.get("/user/auth/check");
-      dispatch({
-        type: "user",
-        payload: { login: data.loggedIn, details: data.user },
-      });
-    } catch (error) {
-      console.error("Error during user authentication check:", error);
-      dispatch({
-        type: "user",
-        payload: { login: false, details: null },
-      });
-    }
-  })();
-}, [refresh, user]);
+  useEffect(() => {
+    (async function () {
+      try {
+        const response = await axiosInstance.get("/user/auth/check");
+        
+        // Ensure response has data and the expected structure
+        if (response?.data) {
+          dispatch({
+            type: "user",
+            payload: { login: response.data.loggedIn, details: response.data.user },
+          });
+        } else {
+          console.error("Unexpected response structure:", response);
+          dispatch({
+            type: "user",
+            payload: { login: false, details: null },
+          });
+        }
+      } catch (error) {
+        console.error("Error during user authentication check:", error);
+        dispatch({
+          type: "user",
+          payload: { login: false, details: null },
+        });
+      }
+    })();
+  }, [refresh, user]);
+  
 
 
   return (

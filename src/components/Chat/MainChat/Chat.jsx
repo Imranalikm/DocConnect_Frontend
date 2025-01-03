@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 import  { io }  from "socket.io-client";
 import UserBottom from "../../UserBottom/UserBottom"
 
-const socket = io.connect("https://docconnect.imranalikm.live");
+const socket = io.connect("https://dc.imranalikm.live");
 
 
 export default function Chat({ }) {
